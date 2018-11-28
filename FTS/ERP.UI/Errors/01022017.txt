@@ -1,9 +1,0 @@
-Page :    http://localhost:7665/OMS/management/dailytask/CashBankEntry.aspx
-Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
-Inner Message : System.IndexOutOfRangeException: Index was outside the bounds of the array.
-   at System.String.get_Chars(Int32 index)
-   at ERP.OMS.Management.DailyTask.management_DailyTask_CashBankEntry.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\DailyTask\CashBankEntry.aspx.cs:line 722
-   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   at System.Web.UI.Control.OnLoad(EventArgs e)
-   at System.Web.UI.Control.LoadRecursive()
-   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

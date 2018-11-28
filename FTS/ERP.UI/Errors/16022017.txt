@@ -1,3 +1,0 @@
-Page :    http://localhost:7665/OMS/Management/Master/root_UserGroups.aspx
-Error Message : e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Master\root_UserGroups.aspx(253): error CS0123: No overload for 'GridUserGroup_PageIndexChanged' matches delegate 'System.EventHandler'
-Inner Message : 

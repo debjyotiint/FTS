@@ -1,4 +1,0 @@
-Page :    http://localhost:7665/OMS/management/ActivityManagement/Sales_Activity.aspx/GetCashBankAccountList
-Error Message : Unknown web method GetCashBankAccountList.
-Parameter name: methodName
-Inner Message : 

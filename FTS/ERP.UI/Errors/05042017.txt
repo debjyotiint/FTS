@@ -1,3 +1,0 @@
-Page :    http://localhost:7665/OMS/Management/Activities/SalesReturn.aspx?key=ADD
-Error Message : e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesReturn.aspx(7495): error CS1061: 'ASP.oms_management_activities_salesreturn_aspx' does not contain a definition for 'cuDFUpdatePanel_Callback' and no extension method 'cuDFUpdatePanel_Callback' accepting a first argument of type 'ASP.oms_management_activities_salesreturn_aspx' could be found (are you missing a using directive or an assembly reference?)
-Inner Message : 

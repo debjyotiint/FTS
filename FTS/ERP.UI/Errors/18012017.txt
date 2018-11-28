@@ -1,9 +1,0 @@
-Page :    http://localhost:7665/OMS/Management/Master/ShowHistory_Phonecall.aspx?id1=73
-Error Message : The state information is invalid for this page and might be corrupted.
-Inner Message : System.Web.UI.ViewStateException: Invalid viewstate. 
-	Client IP: ::1
-	Port: 36804
-	Referer: http://localhost:7665/OMS/Management/Master/ShowHistory_Phonecall.aspx?id1=73
-	Path: /OMS/Management/Master/ShowHistory_Phonecall.aspx
-	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36
-	ViewState: eok4pybdn9Uw7fraehpdot9WuOElODCQ2h1zLzBiRWl+tKY2Rqbs3N+HM300l+lJ6Htb3OlPFVdnuCK3FpkU/RbBOfGcbR1X651ed5FTkBqj5AW6OhdfzwCY+GNT8Yv3lCF0LspcAx8FpMNQajWLPTGk413nnF/cgtw54VefCf2n6nfUq+nSPbYYo1PIYsdzDvPt7CXKOpsGPCVxsL9aBtrSlFbSMYV6RnZAJFAKbITdk8MR0YfH0MlGJEa9NPdRUV/qVLOaoZFyr6WAWbm4MA==

@@ -1,7 +1,0 @@
-Page :    http://localhost:7665/OMS/Management/Activities/PurchaseReturn.aspx?key=ADD
-Error Message : Server tags cannot contain <% ... %> constructs.
-Inner Message : System.Web.HttpException (0x80004005): Server tags cannot contain <% ... %> constructs.
-   at System.Web.UI.TemplateParser.ProcessError(String message)
-   at System.Web.UI.TemplateParser.DetectSpecialServerTagError(String text, Int32 textPos)
-   at System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
-   at System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)

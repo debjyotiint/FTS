@@ -1,4 +1,0 @@
-Page :    http://localhost:7665/OMS/management/ActivityManagement/Sales_Activity.aspx/Sales_Activity.aspx/GetIndustryList
-Error Message : Unknown web method Sales_Activity.aspx/GetIndustryList.
-Parameter name: methodName
-Inner Message : 

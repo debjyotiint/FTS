@@ -1,3 +1,0 @@
-Page :    http://localhost:7665/OMS/management/ActivityManagement/ActivityNewSales.aspx?id1=3&Aid=30242
-Error Message : e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\ActivityManagement\ActivityNewSales.aspx(289): error CS1061: 'ASP.oms_management_activitymanagement_activitynewsales_aspx' does not contain a definition for 'btnPhone_Click' and no extension method 'btnPhone_Click' accepting a first argument of type 'ASP.oms_management_activitymanagement_activitynewsales_aspx' could be found (are you missing a using directive or an assembly reference?)
-Inner Message : 

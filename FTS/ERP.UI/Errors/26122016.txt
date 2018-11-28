@@ -1,3 +1,0 @@
-Page :    http://localhost:7665/OMS/Management/Activities/crm_Sales_Details.aspx?id=11
-Error Message : e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\crm_Sales_Details.aspx(19): error CS1061: 'ASP.oms_management_activities_crm_sales_details_aspx' does not contain a definition for 'SalesDetailsGrid_CustomCallback' and no extension method 'SalesDetailsGrid_CustomCallback' accepting a first argument of type 'ASP.oms_management_activities_crm_sales_details_aspx' could be found (are you missing a using directive or an assembly reference?)
-Inner Message : 

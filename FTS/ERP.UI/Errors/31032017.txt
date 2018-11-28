@@ -1,9 +1,0 @@
-Page :    http://localhost:7665/OMS/Management/Activities/PurchaseChallan.aspx?key=26
-Error Message : The state information is invalid for this page and might be corrupted.
-Inner Message : System.Web.UI.ViewStateException: Invalid viewstate. 
-	Client IP: ::1
-	Port: 63747
-	Referer: http://localhost:7665/OMS/Management/Activities/PurchaseChallan.aspx?key=26
-	Path: /OMS/Management/Activities/PurchaseChallan.aspx
-	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
-	ViewState: 08Ma2Y2bM3xjzIO9FkG31K8L9WDNzerwbJD0I30SmfI/76/naBqNlZyan1ufoodJqXa/gd/DP8l7bj+++/iqJUKTSGEbMBWqCYJ2TfK24rvT5D2LwlJfKgXP1fPqiH2y6RDSuGWQJQcOf3kPsM3oimr2G9+BMWwH964DgFdNh3lTAf/LTsGFEEE2aeT6n9CqdT6jprfypLT0iXCV5kbxHlFaNMO+HFiUazgpIR/NW//xZtCLHf8cBPh2cijKVDwdpsSPk4QorqdFMll5Y0BAkCLp/+Xmcg0ajfTGcJOav8M4YjcKxc8pXInx1oY6+0M5bdvHkRhB9HRIuhlhc3yidev5U7t5H+nSA0rmjGnoxahVMXwK0lQdsIYSEiH33s4NeQimpI3wXW+rrfrHDDsdTb+teEK3na1Qux0G8wseTZQbajkUbcUlQLDkdZUQgJmyvRcYN4VoVvhe0v6F9u8mtcSQ6/ptGIxyFKIYnkl10710IdPcOmLzkbE2vXQkEKjFKflLUf9yqOIcTFWz9mxDZ2nDp664XECEjVWlT+0Faoi2TzfMV0/gdr+FgM1ur51SrDZ0hoUwaCfpTsrtT348FXhUxf5EdIyykMjTeEuGoXN2Mx68jZ6/YNXyiBg95cVqaxUkthyqw7VWQy86Udm65xuutC6DFNgSHl3N2j9brxVdlFosl7z040AoElmObwa8NkqiOz...

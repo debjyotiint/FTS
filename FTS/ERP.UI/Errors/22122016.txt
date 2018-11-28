@@ -1,8 +1,0 @@
-Page :    http://localhost:7665/OMS/Management/Activities/crm_sales.aspx
-Error Message : Literal content ('>') is not allowed within a 'DevExpress.Web.ASPxGridView'.
-Inner Message : System.Web.HttpParseException (0x80004005): Literal content ('>') is not allowed within a 'DevExpress.Web.ASPxGridView'. ---> System.Web.HttpException (0x80004005): Literal content ('>') is not allowed within a 'DevExpress.Web.ASPxGridView'.
-   at System.Web.UI.ControlBuilder.AppendLiteralString(String s)
-   at System.Web.UI.TemplateParser.ProcessLiteral()
-   at System.Web.UI.TemplateParser.ProcessException(Exception ex)
-   at System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
-   at System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)

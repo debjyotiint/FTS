@@ -1,2 +1,0 @@
-<add key="DBConnectionDefault" value="Data Source=LABSERVER\MSSQLSERVERR2;Initial Catalog=ERP;User ID=sa; Password=sql@123" />
-<add key="CRMfolderNameWithPath" value="D:\InfluxCRM_VSS\Influx\" />

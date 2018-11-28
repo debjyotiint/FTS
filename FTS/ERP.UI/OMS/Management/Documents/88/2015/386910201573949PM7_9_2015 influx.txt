@@ -1,5 +1,0 @@
-7_9_2015 influx
-
-1.
-CRM->Masters->Document Types... when we add a new document type, "Is this a Mandatory Document" check box is unticked..But it is shown as "Yes" after saving. Now if you again edit this newly created entry and tick,then untick...it finally displays "No" in TASK #39 UAT - Masters for all segments
-2. Root->Masters->Companies...Document.. Data not saving in TASK #39 UAT - Masters for all segments
