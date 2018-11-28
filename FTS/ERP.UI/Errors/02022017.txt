@@ -1,0 +1,15 @@
+Page :    http://localhost:7665/OMS/Management/Activities/SalesInvoice.aspx
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.Web.HttpException (0x80004005): DataBinding: 'System.Data.DataRowView' does not contain a property with the name 'branch_code'.
+   at System.Web.UI.DataBinder.GetPropertyValue(Object container, String propName)
+   at System.Web.UI.DataBinder.GetPropertyValue(Object container, String propName, String format)
+   at System.Web.UI.WebControls.ListControl.PerformDataBinding(IEnumerable dataSource)
+   at System.Web.UI.WebControls.ListControl.OnDataBinding(EventArgs e)
+   at System.Web.UI.WebControls.ListControl.PerformSelect()
+   at System.Web.UI.WebControls.BaseDataBoundControl.DataBind()
+   at ERP.OMS.Management.Activities.SalesInvoice.GetAllDropDownDetailForSalesQuotation() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesInvoice.aspx.cs:line 97
+   at ERP.OMS.Management.Activities.SalesInvoice.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesInvoice.aspx.cs:line 51
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

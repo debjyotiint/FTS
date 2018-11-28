@@ -1,0 +1,13 @@
+Page :    http://localhost:7665/OMS/Reports/REPXReports/RepxReportViewer.aspx?Previewrpt=POS-TaxInvoice-Format~D&modulename=Invoice_POS&id=237&PrintOption=1
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.InvalidOperationException: Sequence contains no matching element
+   at DevExpress.DataAccess.Sql.SqlDataSource.RebuildResultSchema(Predicate`1 confirmExecution, IEnumerable`1 parameters, IEnumerable`1 queries)
+   at DevExpress.DataAccess.Sql.SqlDataSource.RebuildResultSchema(Predicate`1 confirmExecution, IEnumerable`1 parameters)
+   at DevExpress.DataAccess.Sql.SqlDataSource.RebuildResultSchema(IEnumerable`1 parameters)
+   at DevExpress.DataAccess.Sql.SqlDataSource.RebuildResultSchema()
+   at ERP.OMS.Reports.REPXReports.RepxReportViewer.GenerateSqlDataSource(String RptModuleName) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Reports\REPXReports\RepxReportViewer.aspx.cs:line 372
+   at ERP.OMS.Reports.REPXReports.RepxReportViewer.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Reports\REPXReports\RepxReportViewer.aspx.cs:line 130
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

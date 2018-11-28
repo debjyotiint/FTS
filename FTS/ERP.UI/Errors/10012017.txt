@@ -1,0 +1,3 @@
+Page :    http://localhost:7665/OMS/management/ActivityManagement/Sales_Activity.aspx
+Error Message : e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\ActivityManagement\Sales_Activity.aspx(1561): error CS1061: 'ASP.oms_management_activitymanagement_sales_activity_aspx' does not contain a definition for 'lbClientAvailable_Callback' and no extension method 'lbClientAvailable_Callback' accepting a first argument of type 'ASP.oms_management_activitymanagement_sales_activity_aspx' could be found (are you missing a using directive or an assembly reference?)
+Inner Message : 

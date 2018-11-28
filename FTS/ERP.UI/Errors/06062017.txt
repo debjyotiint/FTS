@@ -1,0 +1,11 @@
+Page :    http://localhost:7665/OMS/Management/Activities/SalesInvoice.aspx?key=ADD
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.FormatException: String was not recognized as a valid DateTime.
+   at System.DateTimeParse.ParseExact(String s, String format, DateTimeFormatInfo dtfi, DateTimeStyles style)
+   at System.DateTime.ParseExact(String s, String format, IFormatProvider provider)
+   at ERP.OMS.Management.Activities.SalesInvoice.SetFinYearCurrentDate() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesInvoice.aspx.cs:line 5560
+   at ERP.OMS.Management.Activities.SalesInvoice.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesInvoice.aspx.cs:line 130
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

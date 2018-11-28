@@ -1,0 +1,47 @@
+31_8_2015_influx Reports
+
+1.MCXSX-CDX
+
+daily Reports-Closing Rate->Page Not Found
+Master Reports-Brokerage and charges->page not found
+
+MIS Reports-Client Risks Analysis->Page Not Found
+User Defined Reports->Page not found
+2.MCXSX-CM
+Query Based Reports-Client Related--Design
+3.MCXSX-FO
+Daily Reports-Exchange Obligation-Error
+Daily Reports-STT Register-Error
+
+4.BFX-COMM
+5.INSX-COMM
+6.INFX-COMM
+7.INBX-COmM
+8.NMCE-COMM
+9.CSE-CM
+10.DGCX-COMM
+11.ACE-COMM
+12.INMX-COMM
+13.NCDEX-COMM
+14.ICEX-COMM
+15.Accounts
+Asset block register->Not Found
+User Defined Reports->Not Found
+16.CRM
+For Telecallers->Performance Report->Not Found
+Lead date Analysis->Duplicate Leads->Not Found
+Lead date Analysis->Vendor Wise Lead data Status->Not Found
+Lead date Analysis->Duplicate Leads->Not Found
+Lead date Analysis->Lead Status->Not Found
+Lead date Analysis->Lead Data Analysis->Not Found
+17. HR
+Daily Activity Report->Not Found
+Branch Wise Employment Details->Not Found
+Remarks based Query->Error
+Leave Availed Employee Wise->Not Found
+
+18. root
+user Defined Reports->Not Found
+
+
+

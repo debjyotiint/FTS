@@ -1,0 +1,3 @@
+Page :    http://localhost:7665/OMS/Management/Activities/SalesmanBudget.aspx?tid=2
+Error Message : e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesmanBudget.aspx(7): error CS1061: 'ASP.oms_management_activities_salesmanbudget_aspx' does not contain a definition for 'BudgetGrid_HtmlRowCreated' and no extension method 'BudgetGrid_HtmlRowCreated' accepting a first argument of type 'ASP.oms_management_activities_salesmanbudget_aspx' could be found (are you missing a using directive or an assembly reference?)
+Inner Message : 

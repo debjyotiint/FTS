@@ -1,0 +1,13 @@
+Page :    http://localhost:7665/OMS/management/ActivityManagement/Sales_Activity.aspx
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.ApplicationException: Response.Redirect cannot be called in a Page callback.
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at BusinessLogicLayer.DBEngine.GetConnection() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\BusinessLogicLayer\DBEngine.cs:line 83
+   at BusinessLogicLayer.DBEngine.GetDataTable(String query) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\BusinessLogicLayer\DBEngine.cs:line 649
+   at ERP.OMS.Management.ActivityManagement.Sales_Activity.BindLead() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\ActivityManagement\Sales_Activity.aspx.cs:line 674
+   at ERP.OMS.Management.ActivityManagement.Sales_Activity.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\ActivityManagement\Sales_Activity.aspx.cs:line 49
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

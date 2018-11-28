@@ -1,0 +1,16 @@
+Page :    http://localhost:7665/OMS/Management/Activities/crm_sales.aspx
+Error Message : Type 'System.Web.UI.WebControls.HiddenField' does not have a public property named 'Text'.
+Inner Message : System.Web.HttpParseException (0x80004005): Type 'System.Web.UI.WebControls.HiddenField' does not have a public property named 'Text'. ---> System.Web.HttpException (0x80004005): Type 'System.Web.UI.WebControls.HiddenField' does not have a public property named 'Text'.
+   at System.Web.UI.ControlBuilder.FillUpBoundPropertyEntry(BoundPropertyEntry entry, String name)
+   at System.Web.UI.ControlBuilder.AddBoundProperty(String filter, String name, String expressionPrefix, String expression, ExpressionBuilder expressionBuilder, Object parsedExpressionData, Boolean generated, String fieldName, String formatString, Boolean twoWayBound, Boolean encode, Int32 line, Int32 column)
+   at System.Web.UI.ControlBuilder.AddBoundProperty(String filter, String name, String expressionPrefix, String expression, ExpressionBuilder expressionBuilder, Object parsedExpressionData, String fieldName, String formatString, Boolean twoWayBound, Boolean encode, Int32 line, Int32 column)
+   at System.Web.UI.ControlBuilder.PreprocessAttribute(String filter, String attribname, String attribvalue, Boolean mainDirectiveMode, Int32 line, Int32 column)
+   at System.Web.UI.ControlBuilder.PreprocessAttributes(ParsedAttributeCollection attribs)
+   at System.Web.UI.ControlBuilder.Init(TemplateParser parser, ControlBuilder parentBuilder, Type type, String tagName, String id, IDictionary attribs)
+   at System.Web.UI.ControlBuilder.CreateBuilderFromType(TemplateParser parser, ControlBuilder parentBuilder, Type type, String tagName, String id, IDictionary attribs, Int32 line, String sourceFileName)
+   at System.Web.UI.ControlBuilder.CreateChildBuilder(String filter, String tagName, IDictionary attribs, TemplateParser parser, ControlBuilder parentBuilder, String id, Int32 line, VirtualPath virtualPath, Type& childType, Boolean defaultProperty)
+   at System.Web.UI.TemplateParser.ProcessBeginTag(Match match, String inputText)
+   at System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   at System.Web.UI.TemplateParser.ProcessException(Exception ex)
+   at System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   at System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)

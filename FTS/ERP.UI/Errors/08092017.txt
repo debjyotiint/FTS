@@ -1,0 +1,10 @@
+Page :    http://localhost:7665/OMS/Management/Activities/UndeliveryReturn.aspx?key=ADD
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.FormatException: Invalid length for a Base-64 char array or string.
+   at System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at ERP.OMS.ViewState_class.VSPage.DecompressViewstate() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\ViewState class\VSPage.cs:line 153
+   at ERP.OMS.ViewState_class.VSPage.LoadPageStateFromPersistenceMedium() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\ViewState class\VSPage.cs:line 95
+   at System.Web.UI.Page.LoadAllState()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

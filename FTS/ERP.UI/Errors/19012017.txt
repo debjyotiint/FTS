@@ -1,0 +1,11 @@
+Page :    http://localhost:7665/OMS/Reports/frmReport_CashBankSummary.aspx
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.NullReferenceException: Object reference not set to an instance of an object.
+   at ERP.OMS.Reports.Reports_frmReport_CashBankSummary.Button1_Click(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Reports\frmReport_CashBankSummary.aspx.cs:line 229
+   at System.EventHandler.Invoke(Object sender, EventArgs e)
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

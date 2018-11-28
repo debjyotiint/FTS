@@ -1,0 +1,9 @@
+Page :    http://localhost:7665/OMS/Management/Activities/SalesChallanAdd.aspx?key=ADD
+Error Message : The ID 'ASPxButton3' is already used by another control.
+Inner Message : System.Web.HttpParseException (0x80004005): The ID 'ASPxButton3' is already used by another control. ---> System.Web.HttpException (0x80004005): The ID 'ASPxButton3' is already used by another control.
+   at System.Web.UI.TemplateParser.ProcessError(String message)
+   at System.Web.UI.TemplateParser.ProcessBeginTag(Match match, String inputText)
+   at System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   at System.Web.UI.TemplateParser.ProcessException(Exception ex)
+   at System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   at System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)

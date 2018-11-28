@@ -1,0 +1,9 @@
+Page :    http://localhost:7665/OMS/management/Activities/CustomerReturn.aspx?key=190&Permission=2
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.NullReferenceException: Object reference not set to an instance of an object.
+   at ERP.OMS.Management.Activities.CustomerReturn.IsExistsDocumentInERPDocApproveStatus(String strQuotationId) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\CustomerReturn.aspx.cs:line 103
+   at ERP.OMS.Management.Activities.CustomerReturn.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\CustomerReturn.aspx.cs:line 243
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

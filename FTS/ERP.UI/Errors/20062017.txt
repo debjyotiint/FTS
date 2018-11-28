@@ -1,0 +1,4 @@
+Page :    http://localhost:7665/OMS/management/ActivityManagement/Sales_List.aspx/GetAllNewSupervisorList
+Error Message : Unknown web method GetAllNewSupervisorList.
+Parameter name: methodName
+Inner Message : 

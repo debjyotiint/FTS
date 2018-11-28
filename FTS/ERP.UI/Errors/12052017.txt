@@ -1,0 +1,11 @@
+Page :    http://localhost:7665/OMS/management/Activities/CustomerReturn.aspx?key=242&Permission=3&type=CR
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at DataAccessLayer.ProcedureExecute.GetDataSet() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\DataAccessLayer\ProcedureExecute.cs:line 141
+   at BusinessLogicLayer.SalesReturnBL.GetCustomerReturnTaggingProductData(String strSalesReturnID, String LastFinYear, String LastCompany) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\BusinessLogicLayer\SalesReturnBL.cs:line 147
+   at ERP.OMS.Management.Activities.CustomerReturn.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\CustomerReturn.aspx.cs:line 262
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+ClientConnectionId:9809a773-9160-49dc-9968-3d08c7f2aa67

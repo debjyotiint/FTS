@@ -1,0 +1,9 @@
+Page :    http://localhost:7665/OMS/Management/Activities/SalesQuotation.aspx?key=ADD&type=1&SalId=146
+Error Message : The state information is invalid for this page and might be corrupted.
+Inner Message : System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: ::1
+	Port: 18846
+	Referer: http://localhost:7665/OMS/Management/Activities/SalesQuotation.aspx?key=ADD&type=1&SalId=146
+	Path: /OMS/Management/Activities/SalesQuotation.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+	ViewState: G5ufmc1lHAuHwsHGPheBZe4QJVYnJxauZOhLxBqSR+zFi5kD+2Rk3s8cgzCo+UUZsl/2ihT/vshmtlzYJ1jfqoUy+a75opc7L7pPaIfZQoA0NXJoi32TeYjdtyge0kYdjUunLDjI4ywIDD03is4lzUdwSbdjOSoF2InpVN92S8uLlucaMM8qDeBdb49gi54V/9s9Q5rj8BZnKUdNX5E/eCoW6prqZiWsBV1570RuIsA0dRi16pMF6TrjOQsBOxh2HwfHNcZ7QK3ym0+G27E9dCUkcTP1jcpTP7wvF6Z/PYo3VkfIgV/oPfBGhyCJVZ+5u8twcs5nl9hTyIN8zaIRiKDuHkYYGvrT4owBfYRqEIM5huUOLq5Y53gvUXN+rHMOh6jI9rWCSOPbGWEvsJa/Z6Kx097+Zw50Obvcuw2Clu4XeAcg7Z+ih1d1xbhgiIW9gUewD/SEl3W0msPjx3a1EGBGmzVXdW7w/lCkj11xlF2dLBN83QHWpfkgCWhJVv58ZFTjrR+gEqKAtqh+536RNOzjKb5Mw9cqRbLHE8GSho5ngxK2Q4/Lb2hmy9jpWIxdKpp34HOypnzuZqkxFC7nGuCXeA8T2WgY6YEKAncq4SKHJTUL5+ioprJlE4d7Xr553jJCb5GCwI1XziMgjF8crrYwPkk8pxS5Npf84kTFoTC6YRYOULIpS8...

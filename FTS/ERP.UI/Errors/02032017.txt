@@ -1,0 +1,9 @@
+Page :    http://localhost:7665/OMS/Management/Activities/SalesOrderAdd.aspx?key=ADD
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.ArgumentException: Invalid postback or callback argument.  Event validation is enabled using <pages enableEventValidation="true"/> in configuration or <%@ Page EnableEventValidation="true" %> in a page.  For security purposes, this feature verifies that arguments to postback or callback events originate from the server control that originally rendered them.  If the data is valid and expected, use the ClientScriptManager.RegisterForEventValidation method in order to register the postback or callback data for validation.
+   at System.Web.UI.ClientScriptManager.ValidateEvent(String uniqueId, String argument)
+   at System.Web.UI.Control.ValidateEvent(String uniqueID, String eventArgument)
+   at System.Web.UI.WebControls.DropDownList.LoadPostData(String postDataKey, NameValueCollection postCollection)
+   at System.Web.UI.WebControls.DropDownList.System.Web.UI.IPostBackDataHandler.LoadPostData(String postDataKey, NameValueCollection postCollection)
+   at System.Web.UI.Page.ProcessPostData(NameValueCollection postData, Boolean fBeforeLoad)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

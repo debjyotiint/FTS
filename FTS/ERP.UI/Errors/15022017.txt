@@ -1,0 +1,29 @@
+Page :    http://localhost:7665/OMS/Management/Activities/SalesOrderAdd.aspx?key=ADD
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.OutOfMemoryException: Exception of type 'System.OutOfMemoryException' was thrown.
+   at DevExpress.Web.GridViewDataColumn..ctor(String fieldName, String caption)
+   at DevExpress.Web.GridViewDataColumn..ctor()
+   at DevExpress.Web.GridViewEditDataColumn..ctor()
+   at DevExpress.Web.GridViewDataTextColumn..ctor()
+   at ASP.oms_management_activities_salesorderadd_aspx.__BuildControl__control114() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx:line 1606
+   at ASP.oms_management_activities_salesorderadd_aspx.__BuildControl__control103(GridViewColumnCollection __ctrl) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx:line 1567
+   at ASP.oms_management_activities_salesorderadd_aspx.__BuildControlgrid() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx:line 1567
+   at ASP.oms_management_activities_salesorderadd_aspx.__BuildControl__control11() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx:line 1246
+   at ASP.oms_management_activities_salesorderadd_aspx.__BuildControl__control10(ContentControlCollection __ctrl) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx:line 1244
+   at ASP.oms_management_activities_salesorderadd_aspx.__BuildControl__control9() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx:line 1244
+   at ASP.oms_management_activities_salesorderadd_aspx.__BuildControl__control8(TabPageCollection __ctrl) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx:line 1242
+   at ASP.oms_management_activities_salesorderadd_aspx.__BuildControlASPxPageControl1() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx:line 1242
+   at ASP.oms_management_activities_salesorderadd_aspx.__BuildControlpnl_quotation() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx:line 1239
+   at ASP.oms_management_activities_salesorderadd_aspx.__BuildControlContent2(Control __ctrl) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx:line 1219
+   at System.Web.UI.CompiledTemplateBuilder.InstantiateIn(Control container)
+   at System.Web.UI.MasterPage.InstantiateInContentPlaceHolder(Control contentPlaceHolder, ITemplate template)
+   at ASP.oms_masterpage_erp_master.__BuildControlContentPlaceHolder1() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\MasterPage\ERP.Master:line 614
+   at ASP.oms_masterpage_erp_master.__BuildControlform1() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\MasterPage\ERP.Master:line 495
+   at ASP.oms_masterpage_erp_master.__BuildControlTree(oms_masterpage_erp_master __ctrl) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\MasterPage\ERP.Master:line 1
+   at ASP.oms_masterpage_erp_master.FrameworkInitialize() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\c3c3778c\654a6664\App_Web_j0hzhdau.1.cs:line 0
+   at System.Web.UI.UserControl.InitializeAsUserControlInternal()
+   at System.Web.UI.MasterPage.CreateMaster(TemplateControl owner, HttpContext context, VirtualPath masterPageFile, IDictionary contentTemplateCollection)
+   at System.Web.UI.Page.get_Master()
+   at System.Web.UI.Page.ApplyMasterPage()
+   at System.Web.UI.Page.PerformPreInit()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

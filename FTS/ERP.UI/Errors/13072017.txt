@@ -1,0 +1,3 @@
+Page :    http://localhost:7665/OMS/Management/Activities/StockinReturnNormal.aspx?key=239&Permission=2&type=SRN
+Error Message : Only Content controls are allowed directly in a content page that contains Content controls.
+Inner Message : 

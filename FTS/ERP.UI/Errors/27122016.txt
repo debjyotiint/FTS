@@ -1,0 +1,3 @@
+Page :    http://localhost:7665/OMS/Management/Activities/crm_sales.aspx
+Error Message : e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\crm_sales.aspx(144): error CS1061: 'ASP.oms_management_activities_crm_sales_aspx' does not contain a definition for 'btnActivity_Click' and no extension method 'btnActivity_Click' accepting a first argument of type 'ASP.oms_management_activities_crm_sales_aspx' could be found (are you missing a using directive or an assembly reference?)
+Inner Message : 

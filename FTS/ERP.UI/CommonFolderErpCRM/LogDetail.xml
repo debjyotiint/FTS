@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <IndexTable>
+    <Index_TableID>1</Index_TableID>
+    <Index_TableName>Trans_CashBankVouchers</Index_TableName>
+    <Index_TotalField>21</Index_TotalField>
+    <Index_ModifyDateTime>2016-12-13T15:00:40+05:30</Index_ModifyDateTime>
+  </IndexTable>
+</NewDataSet>

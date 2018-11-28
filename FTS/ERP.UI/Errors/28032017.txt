@@ -1,0 +1,9 @@
+Page :    http://localhost:7665/OMS/Management/Activities/SalesReturn.aspx?key=ADD
+Error Message : The state information is invalid for this page and might be corrupted.
+Inner Message : System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: ::1
+	Port: 62115
+	Referer: http://localhost:7665/OMS/Management/Activities/SalesReturn.aspx?key=ADD
+	Path: /OMS/Management/Activities/SalesReturn.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+	ViewState: l1CTEGRIHd3AiAZJJL/XfxqoX1V8Y5z86FNNWsut1Nm4RbGhHVJpkq1bx6Bioz/Acgh+/rln/gwIcTxZ2BrByhoNj0VyWNjJdFVO/R2wPrfR5FVonK1OCfBrUlqmFai2yC+0UVQjLctg+enxQKf17AcleRw+W/qAauG/LSKAT9qEvlejL82lxRhkmnhmUJuefkXSEYdAwuhld/huhGUljH66ICrAXW4gJiDobZSKA3naBDaKK718I4M+tUxHGGgwuz0fTuoDv8d1Iy/TPLYWC8FR2f2V9l8PQYe40gMNR8m+GanFzchbltFgT3fO8KmHTnhdVnb/kEblWqURbLFSGGZvDpGHquIpFrkvZkL+STtrQVid+aFiQQWv5ezpw+9pJRqAtNerCXg1OPrOfRq/NxfWIych4eYOpi9lOkVDlmHQLH3KwGVQh1btQTZxMDtnnIFkbHe6FC6M4APjVyuqolA8odv2MtyFbuBfII5itXNMkJsAwuSrLSwNWZkSiiJISL7ukGs9T9J9n376T6yG1ATnjyXZs23VU6IFY/sn5qk+cNYljcbccN1JMibBp4c0uoZ9yxOebdqVzp/qWUy8c8uKX4q6Qg3ASlmJEjdXjhXtldTlwAbXUlp78Omcl0zm5aJ8hi2ly95IuR3jsb4QUgFPK8Y2cwlFu1E0UoQ9hs/cV2BNt8Ypkm9p9PdICDDG4KSJK2z3yhiVW...

@@ -1,0 +1,17 @@
+Page :    http://localhost:7665/OMS/Management/Activities/UndeliveryReturn.aspx?key=ADD
+Error Message : The client disconnected.
+Inner Message : System.Web.UI.ViewStateException: Invalid viewstate. 
+	Client IP: ::1
+	Port: 7076
+	Referer: http://localhost:7665/OMS/Management/Activities/UndeliveryReturn.aspx?key=ADD
+	Path: /OMS/Management/Activities/UndeliveryReturn.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36
+	ViewState: /wEPDwULLTE4NzE3Mzc4MDEPFgIeE1ZhbGlkYXRlUmVxdWVzdE1vZGUCARYCZg9kFgICAQ9kFhACAQ8UKwAEDxYCHgVWYWx1ZQUYL2Fzc2VzdHMvaW1hZ2VzL2xvZ28ucG5nZGRkPCsABgEAFgIeCkltYWdlQWxpZ24LKiRTeXN0ZW0uV2ViLlVJLldlYkNvbnRyb2xzLkltYWdlQWxpZ24FZAICDxQrAAQPFgIfAQUdL2Fzc2VzdHMvaW1hZ2VzL2xvZ28tbWluaS5wbmdkZGQ8KwAGAQAWAh8CCysEBWQCAw8PFgIeBFRleHQFOkdyZWF0IEVhc3Rlcm4gQXBwbGlhbmNlcyBQdnQuIEx0ZC4gKENvcnBvcmF0ZSBIZWFkIE9mZmljZSlkZAIEDw8WAh8DBQoyMDE3LTIwMTggZGQCBQ8PFgIfAwUYQmFzZSBDdXJyZW5jeSA6IElOUltScy5dZGQCBg8PFgIfAwUGVklTSEFMZGQCBw9kFgpmDw8WAh8DBRZBZGQgIFVuZGVsaXZlcnkgUmV0dXJuZGQCAg8WAh4HVmlzaWJsZWhkAgQPZBYaAgEPPCsABwEADxYCHg5fIVVzZVZpZXdTdGF0ZWdkFgJmD2QWAgIBD2QWBGYPZBYCZg9kFgJmD2QWHAIBD2QWAgIDDxAPFgYeDURhdGFUZXh0RmllbGQFClNjaGV... ---> System.FormatException: Invalid length for a Base-64 char array or string.
+   at System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at System.Web.UI.ObjectStateFormatter.Deserialize(String inputString, Purpose purpose)
+   at System.Web.UI.ObjectStateFormatter.System.Web.UI.IStateFormatter2.Deserialize(String serializedState, Purpose purpose)
+   at System.Web.UI.Util.DeserializeWithAssert(IStateFormatter2 formatter, String serializedState, Purpose purpose)
+   at System.Web.UI.HiddenFieldPageStatePersister.Load()
+   --- End of inner exception stack trace ---

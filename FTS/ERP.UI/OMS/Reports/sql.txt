@@ -1,0 +1,699 @@
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+go
+
+
+--select * from tbl_master_companyexchange
+
+--exec FetchHoldbackRelease '2010-2011','COR0000002','24','2010-12-06','''CLG0000069''','NA','24,30'
+
+ALTER Procedure [dbo].[FetchHoldbackRelease]
+@FinYear varchar(15),
+@CompanyID varchar(15),
+@SegmentID varchar(5),
+@PayoutDate datetime,
+@Client varchar(max),
+@Scrip varchar(max),
+@AllCMSegment varchar(100)
+As
+Begin
+	declare @FAXID int,@FINID int,@QtyDeliver numeric(28,6),@ProductID varchar(20),@isin varchar(30),@Stocks numeric(28,6),
+			@Sql varchar(max),@ClearBalance numeric(28,6),@OutgoingDelv varchar(10),@DesgBenAcc varchar(10),@EntrAcc varchar(10),@MarkDebtBalance numeric(28,6),
+			@Acctype varchar(10),@AcName varchar(10),@CustID varchar(15),@AccountID varchar(10),@FAXID1 int,@FINID1 int,
+			@TotDelVal numeric(28,6),@ProID varchar(20),@netvalue numeric(28,6),@Proid1 varchar(20),@qtyDelv varchar(20),
+			@ClearBal numeric(28,6),@UnitPriceQuan numeric(28,6),@qtyDelv1 decimal,
+			@CustomerIDCL varchar(15),@ClientCL varchar(500),@UCCCL varchar(10),@ScripCL varchar(500),@ProductIDCL varchar(20),
+			@ISINCL varchar(30),@QtyToDeliverCL numeric(28,6),@StockCL numeric(28,6),@DelvOutgoingDeliveryCL varchar(10),
+			@DelvDesignatedBenAcCL varchar(10),@DelvHoldBackEntireACCL varchar(10),@DelvMarkUpOnDebitBalanceCL varchar(100),
+			@DelvLedgerClearBalanceCL numeric(28,6),@DelvMarginClearBalanceCL numeric(28,6),@DelvLedgerClosingBalanceCL numeric(28,6),
+			@DelvMarginClosingBalanceCL numeric(28,6),@TotalDeliveryValueCL numeric(28,6),@AccTypeCL varchar(10),@AccNameCL varchar(20),
+			@AccountIDCL varchar(10) ,@CustID1 varchar(12),@FINID3 int,@NoPartialHoldback varchar(4),@DebitGrace numeric(28,6),@DebitGrace1 numeric(28,6),
+			@SQL1 varchar(max)
+
+	begin try
+	BEGIN TRANSACTION	
+
+	create TABLE #TempDeliveryProcessing
+	(
+		SRNO int identity(1,1),
+		CustomerID varchar(15) null,
+		Client varchar(500) null,
+		UCC varchar(10) null,
+		Scrip varchar(500) null,		
+		ProductID varchar(20) null,
+		ISIN varchar(30) null,
+		QtyToDeliver numeric(28,6) null,
+		Stock numeric(28,6) null,
+		DelvOutgoingDelivery varchar(10) null,
+		DelvDesignatedBenAc varchar(10) null,
+		DelvHoldBackEntireAC varchar(10) null,
+		DelvMarkUpOnDebitBalance varchar(100) null,
+		DelvNoPartialHoldBack varchar(10) null,
+		DelvDebitGrace numeric(28,6) null,
+		DelvLedgerClearBalance numeric(28,6) null,
+		DelvMarginClearBalance numeric(28,6) null,
+		DelvLedgerClosingBalance numeric(28,6) null,
+		DelvMarginClosingBalance numeric(28,6) null,
+		TotalDeliveryValue numeric(28,6) null,
+		AccType varchar(10) null,
+		AccName varchar(20) null,
+		AccountID varchar(10) null,
+		SettNumber varchar(12) null,
+		SettType varchar(12) null
+	)
+	create TABLE #TempDeliveryProcessing1
+	(
+		SRNO int identity(1,1),
+		CustomerID varchar(15) null,
+		Client varchar(500) null,
+		UCC varchar(10) null,
+		Scrip varchar(500) null,		
+		ProductID varchar(20) null,
+		ISIN varchar(30) null,
+		QtyToDeliver numeric(28,6) null,
+		Stock numeric(28,6) null,
+		DelvOutgoingDelivery varchar(10) null,
+		DelvDesignatedBenAc varchar(10) null,
+		DelvHoldBackEntireAC varchar(10) null,
+		DelvMarkUpOnDebitBalance varchar(100) null,
+		DelvNoPartialHoldBack varchar(10) null,
+		DelvDebitGrace numeric(28,6) null,
+		DelvLedgerClearBalance numeric(28,6) null,
+		DelvMarginClearBalance numeric(28,6) null,
+		DelvLedgerClosingBalance numeric(28,6) null,
+		DelvMarginClosingBalance numeric(28,6) null,
+		TotalDeliveryValue numeric(28,6) null,
+		AccType varchar(10) null,
+		AccName varchar(20) null,
+		AccountID varchar(10) null,
+		SettNumber varchar(12) null,
+		SettType varchar(12) null
+	)
+	create TABLE #TempDeliveryProcessing2
+	(
+		SRNO int identity(1,1),
+		CustomerID varchar(15) null,
+		Client varchar(500) null,
+		UCC varchar(10) null,
+		Scrip varchar(500) null,		
+		ProductID varchar(20) null,
+		ISIN varchar(30) null,
+		QtyToDeliver numeric(28,6) null,
+		Stock numeric(28,6) null,
+		DelvOutgoingDelivery varchar(10) null,
+		DelvDesignatedBenAc varchar(10) null,
+		DelvHoldBackEntireAC varchar(10) null,
+		DelvMarkUpOnDebitBalance varchar(100) null,
+		DelvNoPartialHoldBack varchar(10) null,
+		DelvDebitGrace numeric(28,6) null,
+		DelvLedgerClearBalance numeric(28,6) null,
+		DelvMarginClearBalance numeric(28,6) null,
+		DelvLedgerClosingBalance numeric(28,6) null,
+		DelvMarginClosingBalance numeric(28,6) null,
+		TotalDeliveryValue numeric(28,6) null,
+		AccType varchar(10) null,
+		AccName varchar(20) null,
+		AccountID varchar(10) null,
+		SettNumber varchar(12) null,
+		SettType varchar(12) null
+	)
+	create TABLE #TempStock
+	(
+		SRNO int identity(1,1),
+		ProductID varchar(20) null,
+		ISIN varchar(30) null,
+		Stock numeric(28,6) null,
+		AccountID varchar(10) 
+	)
+	create TABLE #TempClientDp
+	(
+		SRNO int identity(1,1),
+		CustomerID varchar(15) null,
+		ID varchar(500) null,
+		ClientBankName varchar(1000) null,
+		AcType varchar(20) null
+	)
+	
+	create TABLE #TempProfileMember
+	(
+		SRNO int identity(1,1),
+		CustomerID varchar(20) null,
+		OutgoingDelivery varchar(10) null,
+		DesignatedBenAc varchar(10) null,
+		HoldBackEntireAC varchar(10) null,
+		MarkUpOnDebitBalance varchar(100) null,
+		NoPartialHoldBack varchar(10) null,
+		DebitGrace numeric(28,6) null
+	)
+	create TABLE #TempProfileMemberShow
+	(
+		SRNO int identity(1,1),
+		CustomerID varchar(20) null,
+		LedgerClearBalance numeric(28,6) null,
+		MarginClearBalance numeric(28,6) null,
+		LedgerClosingBalance numeric(28,6) null,
+		MarginClosingBalance numeric(28,6) null,
+		ProfileName varchar(500) null,
+		TotalDelVal numeric(28,6)
+	)
+	create TABLE #TempDistinctCustID
+	(
+		SRNO int identity(1,1),
+		CustomerID varchar(20) null
+	)
+	create TABLE #TempCustIDForProfile
+	(
+		SRNO int identity(1,1),
+		CustomerID varchar(20) null,
+		ProductID varchar(20) null,
+		NetValue numeric(28,6) null,
+		UnitPriceQuantity numeric(28,6) null
+	)
+	create TABLE #TempMarginAC
+	(
+		SRNO int identity(1,1),
+		ID varchar(500) null,
+		ShortName varchar(1000) null
+	)
+	create TABLE #TempHoldBackAC
+	(
+		SRNO int identity(1,1),
+		ID varchar(500) null,
+		ShortName varchar(1000) null
+	)
+
+	if(@Client<>'NA' and @Scrip<>'NA')
+	begin
+		set @Sql='select DematPosition_CustomerID,isnull((select isnull(rtrim(cnt_firstName),'''')+'' ''+isnull(rtrim(cnt_middlename),'''')+'' ''+isnull(rtrim(cnt_lastName),'''') from tbl_master_contact where cnt_internalID=DematPosition_CustomerID and DematPosition_CustomerID like ''CL%''),DematPosition_CustomerID) as Client,
+		(select isnull(rtrim(cnt_UCC),'''') from tbl_master_contact where cnt_internalID=DematPosition_CustomerID) as UCC,
+		(select isnull(rtrim(Equity_TickerSymbol),'''')+'' [''+isnull(rtrim(Equity_Series),isnull(rtrim(Equity_TickerCode),''''))+'']'' from master_equity where Equity_SeriesID=DematPosition_ProductSeriesID) as Scrip,DematPosition_ProductSeriesID,DematPosition_ISIN,
+		isnull(DematPosition_BFOpeningQty,0)+isnull(DematPosition_QtyReceived,0)-isnull(DematPosition_QtyDelivered,0),DematPosition_SettlementNumber,DematPosition_SettlementType
+		from Trans_DematPosition where  DematPosition_CustomerID like ''CL%''
+		and DematPosition_Type=''H'' and DematPosition_FinYear='''+@FinYear+''' and DematPosition_SegmentID='''+@SegmentID+''' and DematPosition_CompanyID='''+@CompanyID+'''
+		and DematPosition_CustomerID in('+@Client+') and DematPosition_ProductSeriesID in('+@Scrip+')
+		and (isnull(DematPosition_BFOpeningQty,0)+isnull(DematPosition_QtyReceived,0)-isnull(DematPosition_QtyDelivered,0))>0
+		order by DematPosition_ISIN,DematPosition_QtyToDeliver '
+		
+		insert into #TempDeliveryProcessing(CustomerID,Client,UCC,Scrip,ProductID,ISIN,QtyToDeliver,SettNumber,SettType)
+		exec(@Sql)
+	end
+	else if(@Client<>'NA' and @Scrip='NA')
+	begin
+		set @Sql='select DematPosition_CustomerID,isnull((select isnull(rtrim(cnt_firstName),'''')+'' ''+isnull(rtrim(cnt_middlename),'''')+'' ''+isnull(rtrim(cnt_lastName),'''') from tbl_master_contact where cnt_internalID=DematPosition_CustomerID and DematPosition_CustomerID like ''CL%''),DematPosition_CustomerID) as Client,
+		(select isnull(rtrim(cnt_UCC),'''') from tbl_master_contact where cnt_internalID=DematPosition_CustomerID) as UCC,
+		(select isnull(rtrim(Equity_TickerSymbol),'''')+'' [''+isnull(rtrim(Equity_Series),isnull(rtrim(Equity_TickerCode),''''))+'']'' from master_equity where Equity_SeriesID=DematPosition_ProductSeriesID) as Scrip,DematPosition_ProductSeriesID,DematPosition_ISIN,
+		isnull(DematPosition_BFOpeningQty,0)+isnull(DematPosition_QtyReceived,0)-isnull(DematPosition_QtyDelivered,0),DematPosition_SettlementNumber,DematPosition_SettlementType
+		from Trans_DematPosition where DematPosition_CustomerID like ''CL%''
+		and DematPosition_Type=''H'' and DematPosition_FinYear='''+@FinYear+''' and DematPosition_SegmentID='''+@SegmentID+''' and DematPosition_CompanyID='''+@CompanyID+'''
+		and DematPosition_CustomerID in('+@Client+')
+		and (isnull(DematPosition_BFOpeningQty,0)+isnull(DematPosition_QtyReceived,0)-isnull(DematPosition_QtyDelivered,0))>0
+		order by DematPosition_ISIN,DematPosition_QtyToDeliver '
+--	print @Sql	
+		insert into #TempDeliveryProcessing(CustomerID,Client,UCC,Scrip,ProductID,ISIN,QtyToDeliver,SettNumber,SettType)
+		exec(@Sql) 
+	end
+	else if(@Client='NA' and @Scrip<>'NA')
+	begin
+		set @Sql='select DematPosition_CustomerID,isnull((select isnull(rtrim(cnt_firstName),'''')+'' ''+isnull(rtrim(cnt_middlename),'''')+'' ''+isnull(rtrim(cnt_lastName),'''') from tbl_master_contact where cnt_internalID=DematPosition_CustomerID and DematPosition_CustomerID like ''CL%''),DematPosition_CustomerID) as Client,
+		(select isnull(rtrim(cnt_UCC),'''') from tbl_master_contact where cnt_internalID=DematPosition_CustomerID) as UCC,
+		(select isnull(rtrim(Equity_TickerSymbol),'''')+'' [''+isnull(rtrim(Equity_Series),isnull(rtrim(Equity_TickerCode),''''))+'']'' from master_equity where Equity_SeriesID=DematPosition_ProductSeriesID) as Scrip,DematPosition_ProductSeriesID,DematPosition_ISIN,
+		isnull(DematPosition_BFOpeningQty,0)+isnull(DematPosition_QtyReceived,0)-isnull(DematPosition_QtyDelivered,0),DematPosition_SettlementNumber,DematPosition_SettlementType
+		from Trans_DematPosition where DematPosition_CustomerID like ''CL%''
+		and DematPosition_Type=''H'' and DematPosition_FinYear='''+@FinYear+''' and DematPosition_SegmentID='''+@SegmentID+''' and DematPosition_CompanyID='''+@CompanyID+'''
+		and DematPosition_ProductSeriesID in('+@Scrip+')
+		and (isnull(DematPosition_BFOpeningQty,0)+isnull(DematPosition_QtyReceived,0)-isnull(DematPosition_QtyDelivered,0))>0
+		order by DematPosition_ISIN,DematPosition_QtyToDeliver '
+		
+		insert into #TempDeliveryProcessing(CustomerID,Client,UCC,Scrip,ProductID,ISIN,QtyToDeliver,SettNumber,SettType)
+		exec(@Sql)
+	end
+	else
+	begin
+		insert into #TempDeliveryProcessing(CustomerID,Client,UCC,Scrip,ProductID,ISIN,QtyToDeliver,SettNumber,SettType)
+		select DematPosition_CustomerID,isnull((select isnull(rtrim(cnt_firstName),'')+' '+isnull(rtrim(cnt_middlename),'')+' '+isnull(rtrim(cnt_lastName),'') from tbl_master_contact where cnt_internalID=DematPosition_CustomerID and DematPosition_CustomerID like 'CL%'),DematPosition_CustomerID) as Client,
+		(select isnull(rtrim(cnt_UCC),'') from tbl_master_contact where cnt_internalID=DematPosition_CustomerID) as UCC,
+		(select isnull(rtrim(Equity_TickerSymbol),'')+' ['+isnull(rtrim(Equity_Series),isnull(rtrim(Equity_TickerCode),''))+']' from master_equity where Equity_SeriesID=DematPosition_ProductSeriesID) as Scrip,DematPosition_ProductSeriesID,DematPosition_ISIN,
+		isnull(DematPosition_BFOpeningQty,0)+isnull(DematPosition_QtyReceived,0)-isnull(DematPosition_QtyDelivered,0),DematPosition_SettlementNumber,DematPosition_SettlementType
+		from Trans_DematPosition where DematPosition_CustomerID like 'CL%'
+		and DematPosition_Type='H' and DematPosition_FinYear=@FinYear and DematPosition_SegmentID=@SegmentID and DematPosition_CompanyID=@CompanyID
+		and (isnull(DematPosition_BFOpeningQty,0)+isnull(DematPosition_QtyReceived,0)-isnull(DematPosition_QtyDelivered,0))>0
+		order by DematPosition_ISIN,DematPosition_QtyToDeliver 
+	end
+	insert into #TempStock(ProductID,ISIN,Stock,AccountID)
+	select DematStocks_ProductSeriesID,DematStocks_ISIN,
+	sum(isnull(DematStocks_OpeningQty,0)+isnull(DematStocks_InQty,0)-isnull(DematStocks_OutQty,0)),DematStocks_AccountID
+	from Trans_DematStocks where --DematStocks_SettlementNumber=@SettlementNumber and DematStocks_SettlementType=@SettlementType and 
+	DematStocks_FinYear=@FinYear and DematStocks_SettlementNumber in('Margin','Hldbk')
+	and DematStocks_AccountID in(select DPAccounts_ID from Master_DPAccounts where DPAccounts_AccountType='[HOLDBK]')
+	and isnull(DematStocks_OpeningQty,0)+isnull(DematStocks_InQty,0)-isnull(DematStocks_OutQty,0)>0
+	group by DematStocks_ProductSeriesID,DematStocks_ISIN,DematStocks_AccountID
+	order by DematStocks_ISIN
+
+--	select * from #TempDeliveryProcessing
+--	select * from #TempStock where ProductID=823
+	 
+	
+	insert into #TempClientDp(CustomerID,ID,ClientBankName,AcType)
+	select dpd_cntID,cast(dpd_id as varchar) as ID,isnull((select rtrim(replace(dp_dpName,char(160),char(32))) from tbl_master_depositoryParticipants where substring(dp_dpId,1,8)=substring(dpd_dpCode,1,8)),'')+'['+ltrim(rtrim(dpd_ClientID))+']',dpd_accountType
+	from tbl_master_contactdpdetails
+
+	insert into #TempProfileMember(CustomerID,OutgoingDelivery,DesignatedBenAc,HoldBackEntireAC,MarkUpOnDebitBalance,NoPartialHoldBack,DebitGrace)
+	select ProfileMember_CustomerID,DeliveryProfile_OutgoingDeliveries,DeliveryProfile_DesignatedBenAccount,DeliveryProfile_HoldBackEntireDeliveries,
+	DeliveryProfile_MarkUpOnDebitBalance,DeliveryProfile_NoPartialHoldback,DeliveryProfile_DebitGrace from Config_DeliveryProfile,Trans_ProfileMember
+	where DeliveryProfile_Code=ProfileMember_Code and ProfileMember_Type=2
+	and DeliveryProfile_SegmentID=@SegmentID and (@PayoutDate between DeliveryProfile_DateFrom and isnull(DeliveryProfile_DateTo,'10/10/2100'))
+	and (@PayoutDate between ProfileMember_DateFrom and isnull(ProfileMember_DateTo,'10/10/2100'))
+
+
+
+	set @SQL1='select AccountsLedger_SubAccountID,(select cast(isnull(sum(a.accountsledger_amountCr-a.accountsledger_amountDr),0) as money)  from Trans_AccountsLedger a
+	where a.AccountsLedger_TransactionDate<='''+@PayoutDate+''' and a.AccountsLedger_MainAccountID=''SYSTM00001''
+	and a.AccountsLedger_CompanyID='''+@CompanyID+''' and a.AccountsLedger_ExchangeSegmentID in('+@AllCMSegment+') and (a.AccountsLedger_ValueDate is null or a.AccountsLedger_ValueDate=''1900-01-01 00:00:00.000'')
+	and a.AccountsLedger_SubAccountID=Trans_AccountsLedger.AccountsLedger_SubAccountID and a.AccountsLedger_FinYear='''+@FinYear+'''
+	and a.AccountsLedger_TransactionType=''Cash_Bank'' and a.AccountsLedger_TransactionReferenceID like ''R/%''
+	) as LedgerCliClearBalance,
+	(select cast(isnull(sum(a.accountsledger_amountCr-a.accountsledger_amountDr),0) as money)  from Trans_AccountsLedger a
+	where a.AccountsLedger_TransactionDate<='''+@PayoutDate+''' and a.AccountsLedger_MainAccountID=''SYSTM00002''
+	and a.AccountsLedger_CompanyID='''+@CompanyID+''' and a.AccountsLedger_ExchangeSegmentID in('+@AllCMSegment+') and (a.AccountsLedger_ValueDate is null or a.AccountsLedger_ValueDate=''1900-01-01 00:00:00.000'')
+	and a.AccountsLedger_SubAccountID=Trans_AccountsLedger.AccountsLedger_SubAccountID  and a.AccountsLedger_FinYear='''+@FinYear+'''
+	and a.AccountsLedger_TransactionType=''Cash_Bank'' and AccountsLedger_TransactionReferenceID like ''R/%''
+	) as MarginCliClearBalance,
+	(select cast(isnull(sum(a.accountsledger_amountCr-a.accountsledger_amountDr),0) as money)  from Trans_AccountsLedger a
+	where a.AccountsLedger_TransactionDate<='''+@PayoutDate+''' and a.AccountsLedger_MainAccountID=''SYSTM00001''
+	and a.AccountsLedger_CompanyID='''+@CompanyID+''' and a.AccountsLedger_ExchangeSegmentID in('+@AllCMSegment+')
+	and a.AccountsLedger_SubAccountID=Trans_AccountsLedger.AccountsLedger_SubAccountID  and a.AccountsLedger_FinYear='''+@FinYear+''') as LedgerCliClosingBalance,
+	(select cast(isnull(sum(a.accountsledger_amountCr-a.accountsledger_amountDr),0) as money)  from Trans_AccountsLedger a
+	where a.AccountsLedger_TransactionDate<='''+@PayoutDate+''' and a.AccountsLedger_MainAccountID=''SYSTM00002''
+	and a.AccountsLedger_CompanyID='''+@CompanyID+''' and a.AccountsLedger_ExchangeSegmentID in('+@AllCMSegment+')
+	and a.AccountsLedger_SubAccountID=Trans_AccountsLedger.AccountsLedger_SubAccountID  and a.AccountsLedger_FinYear='''+@FinYear+''') as MarginCliClocingBalance,
+	isnull((select TradingProfile_Name from Master_TradingProfile where TradingProfile_Type=2 and TradingProfile_Code
+	in(select ProfileMember_Code from Trans_ProfileMember where ProfileMember_Type=2 and ProfileMember_CustomerID=Trans_AccountsLedger.AccountsLedger_SubAccountID and 
+	('''+@PayoutDate+''' between ProfileMember_DateFrom and isnull(ProfileMember_DateTo,''10/10/2100'')))),
+	(select TradingProfile_Name from Master_TradingProfile where TradingProfile_Code=''DEFAULTDLV'')) as ProfileName
+	from Trans_AccountsLedger
+	where AccountsLedger_TransactionDate<='''+@PayoutDate+''' and (AccountsLedger_MainAccountID=''SYSTM00001'' or AccountsLedger_MainAccountID=''SYSTM00002'')
+	and AccountsLedger_SubAccountID like ''CL%''
+	and AccountsLedger_CompanyID='''+@CompanyID+''' and AccountsLedger_ExchangeSegmentID in('+@AllCMSegment+')
+	group by AccountsLedger_SubAccountID order by AccountsLedger_SubAccountID'
+
+print @SQL1
+
+	insert into #TempProfileMemberShow(CustomerID,LedgerClearBalance,MarginClearBalance,LedgerClosingBalance,MarginClosingBalance,ProfileName)
+	exec (@SQL1)
+
+select * from #TempProfileMemberShow
+
+	update #TempProfileMemberShow set LedgerClearBalance=(LCLOSING-LCLEAR),
+									MarginClearBalance=(MCLOSING-MCLEAR)
+	from (
+		select CustomerID,LedgerClearBalance as LCLEAR,MarginClearBalance as MCLEAR,
+		LedgerClosingBalance as LCLOSING,MarginClosingBalance as MCLOSING
+		from #TempProfileMemberShow
+	) as DD where DD.CustomerID=#TempProfileMemberShow.CustomerID
+
+--select * from #TempProfileMemberShow
+
+	update #TempDeliveryProcessing set DelvOutgoingDelivery=OutgoingDelivery,DelvDesignatedBenAc=DesignatedBenAc,DelvHoldBackEntireAC=HoldBackEntireAC,DelvMarkUpOnDebitBalance=MarkUpOnDebitBalance,
+				DelvNoPartialHoldBack=NoPartialHoldBack,DelvDebitGrace=DebitGrace	
+	from (
+			select CustomerID,OutgoingDelivery,DesignatedBenAc,HoldBackEntireAC,MarkUpOnDebitBalance,NoPartialHoldBack,DebitGrace from #TempProfileMember
+		) as DD
+	where #TempDeliveryProcessing.CustomerID=DD.CustomerID
+
+--select * from #TempDeliveryProcessing --where CustomerID='CLG0000056'
+
+	update #TempDeliveryProcessing set DelvLedgerClearBalance=LedgerClearBalance,DelvMarginClearBalance=MarginClearBalance,DelvLedgerClosingBalance=LedgerClosingBalance,DelvMarginClosingBalance=MarginClosingBalance
+	from (
+			select CustomerID,LedgerClearBalance,MarginClearBalance,LedgerClosingBalance,MarginClosingBalance from #TempProfileMemberShow
+		) as DD1
+	where #TempDeliveryProcessing.CustomerID=DD1.CustomerID
+
+--select * from #TempDeliveryProcessing
+
+	update #TempProfileMemberShow set TotalDelVal=TotalVal
+	from (
+			select CustomerTrades_CustomerID,sum(isnull(CustomerTrades_NetValue,0)) as TotalVal from Trans_CustomerTrades where CustomerTrades_CompanyID=@CompanyID and CustomerTrades_ExchangeSegment=@SegmentID
+--			and CustomerTrades_SettlementNumber=@SettlementNumber and CustomerTrades_SettlementType=@SettlementType
+			and CustomerTrades_BrokerageType='D' and CustomerTrades_NetValue<0
+			group by CustomerTrades_CustomerID
+		) as DD2
+	where #TempProfileMemberShow.CustomerID=DD2.CustomerTrades_CustomerID
+
+	update #TempDeliveryProcessing set TotalDeliveryValue=TotalVal
+	from (
+			select CustomerTrades_CustomerID,sum(isnull(CustomerTrades_NetValue,0)) as TotalVal from Trans_CustomerTrades where CustomerTrades_CompanyID=@CompanyID and CustomerTrades_ExchangeSegment=@SegmentID
+--			and CustomerTrades_SettlementNumber=@SettlementNumber and CustomerTrades_SettlementType=@SettlementType
+			and CustomerTrades_BrokerageType='D' and CustomerTrades_NetValue<0
+			group by CustomerTrades_CustomerID
+		) as DD3
+	where #TempDeliveryProcessing.CustomerID=DD3.CustomerTrades_CustomerID
+
+	update #TempDeliveryProcessing set DelvOutgoingDelivery=DeliveryProfile_OutgoingDeliveries,DelvDesignatedBenAc=DeliveryProfile_DesignatedBenAccount,DelvHoldBackEntireAC=DeliveryProfile_HoldBackEntireDeliveries,DelvMarkUpOnDebitBalance=DeliveryProfile_MarkUpOnDebitBalance
+	from (
+			select DeliveryProfile_OutgoingDeliveries,DeliveryProfile_DesignatedBenAccount,DeliveryProfile_HoldBackEntireDeliveries,
+			DeliveryProfile_MarkUpOnDebitBalance from Config_DeliveryProfile
+			where DeliveryProfile_SegmentID=@SegmentID and (@PayoutDate between DeliveryProfile_DateFrom and isnull(DeliveryProfile_DateTo,'10/10/2100'))
+			and DeliveryProfile_Code='DEFAULTDLV'
+		) as DD3
+	where #TempDeliveryProcessing.DelvOutgoingDelivery is null
+
+--select * from #TempDeliveryProcessing where CustomerID='CLG0000056'
+
+	set @FAXID=null
+	set @FINID=null
+	set @FAXID1=null
+	set @FINID1=null
+
+	insert into #TempDistinctCustID 
+	select distinct CustomerID from #TempDeliveryProcessing
+
+	insert into #TempCustIDForProfile(CustomerID,ProductID,NetValue,UnitPriceQuantity)	
+	select CustomerTrades_CustomerID,CustomerTrades_ProductSeriesID,CustomerTrades_NetValue,CustomerTrades_UnitPriceQuantity
+	from(
+	select CustomerTrades_CustomerID,CustomerTrades_ProductSeriesID,sum(CustomerTrades_NetValue) as CustomerTrades_NetValue,sum(CustomerTrades_UnitPriceQuantity) as CustomerTrades_UnitPriceQuantity from Trans_CustomerTrades 
+		where CustomerTrades_CompanyID=@CompanyID and CustomerTrades_ExchangeSegment=@SegmentID
+--		and CustomerTrades_SettlementNumber=@SettlementNumber and CustomerTrades_SettlementType=@SettlementType
+		and CustomerTrades_BrokerageType='D' and CustomerTrades_NetValue<0 
+		group by CustomerTrades_CustomerID,CustomerTrades_ProductSeriesID
+	) as DD1 order by CustomerTrades_CustomerID,CustomerTrades_NetValue desc
+
+--select * from #TempCustIDForProfile where ProductID=6
+
+--	select * from #TempDeliveryProcessing where CustomerID='CLG0000056'
+
+--select * from #TempDeliveryProcessing
+
+	insert into #TempDeliveryProcessing1(CustomerID,Client,UCC,Scrip,ProductID,ISIN,QtyToDeliver,Stock,DelvOutgoingDelivery,DelvDesignatedBenAc,DelvHoldBackEntireAC,DelvMarkUpOnDebitBalance,DelvNoPartialHoldBack,DelvDebitGrace,DelvLedgerClearBalance,DelvMarginClearBalance,DelvLedgerClosingBalance,DelvMarginClosingBalance,TotalDeliveryValue,AccType,AccName,AccountID,SettNumber,SettType)
+	select CustomerID,Client,UCC,Scrip,ProductID,ISIN,QtyToDeliver,Stock,DelvOutgoingDelivery,DelvDesignatedBenAc,DelvHoldBackEntireAC,DelvMarkUpOnDebitBalance,DelvNoPartialHoldBack,DelvDebitGrace,DelvLedgerClearBalance,DelvMarginClearBalance,DelvLedgerClosingBalance,DelvMarginClosingBalance,TotalDeliveryValue,AccType,AccName,AccountID,SettNumber,SettType
+	from 	#TempDeliveryProcessing 
+	--where DelvLedgerClearBalance>=0
+
+--select * from #TempDeliveryProcessing1	
+	----------------------For Profile Settilg-----------------------------------------------------------
+	select @FAXID=max(SRNO) from #TempDistinctCustID
+	select @FINID=min(SRNO) from #TempDistinctCustID
+	while @FAXID>=@FINID
+	begin
+		set @CustID1=null
+		set @CustID=null
+		set @ClearBalance=null
+		set @OutgoingDelv=null
+		set @DesgBenAcc=null
+		set @EntrAcc=null
+		set @MarkDebtBalance=null
+		set @TotDelVal=null
+		set @Acctype=null
+		set @AcName=null
+		set @NoPartialHoldback=null	
+		set @DebitGrace=null	
+		
+		select @CustID1=CustomerID	from #TempDistinctCustID where	SRNO=@FINID
+
+		select @CustID=CustomerID,@ClearBalance=DelvLedgerClearBalance,@OutgoingDelv=DelvOutgoingDelivery,@DesgBenAcc=DelvDesignatedBenAc,
+			   @EntrAcc=DelvHoldBackEntireAC,@MarkDebtBalance=DelvMarkUpOnDebitBalance,@TotDelVal=TotalDeliveryValue,@NoPartialHoldback=DelvNoPartialHoldBack,
+			   @DebitGrace=DelvDebitGrace
+		from #TempDeliveryProcessing1 where CustomerID=@CustID1
+		if(cast(@ClearBalance as decimal)>=0)
+		begin
+			if(@OutgoingDelv=3)
+			begin
+				set @Acctype='MA'
+				set @AcName=@DesgBenAcc			
+			end
+			else if(@OutgoingDelv=4)
+			begin
+				set @Acctype='HA'
+				set @AcName=@DesgBenAcc			
+			end
+			else
+				set @Acctype='CA'
+			print @Acctype
+			update #TempDeliveryProcessing1 set AccType=@Acctype,AccName=@AcName where CustomerID=@CustID
+		end
+		else
+		begin
+			if(@OutgoingDelv=3)
+			begin
+				set @Acctype='MA'
+				set @AcName=@DesgBenAcc	
+				update #TempDeliveryProcessing1 set AccType=@Acctype,AccName=@AcName where CustomerID=@CustID		
+			end
+			else if(@OutgoingDelv=4)
+			begin
+				set @Acctype='HA'
+				set @AcName=@DesgBenAcc	
+				update #TempDeliveryProcessing1 set AccType=@Acctype,AccName=@AcName where CustomerID=@CustID		
+			end
+			else
+			begin
+				if(@EntrAcc=1)
+				begin
+					set @Acctype='HA'
+					update #TempDeliveryProcessing1 set AccType=@Acctype,AccName=@AcName where CustomerID=@CustID
+				end
+				else
+				begin
+					if(@OutgoingDelv=2)
+					begin
+						set @Acctype='CA'
+						update #TempDeliveryProcessing1 set AccType=@Acctype,AccName=@AcName where CustomerID=@CustID
+					end
+					else if(@OutgoingDelv=5)
+					begin
+						set @Acctype='MA'
+						set @AcName=@DesgBenAcc			
+						update #TempDeliveryProcessing1 set AccType=@Acctype,AccName=@AcName where CustomerID=@CustID
+					end
+					else
+					begin
+						set @FAXID1=null
+						set @FINID1=null
+						select * into #TempTable5 from(
+						select * from #TempCustIDForProfile where CustomerID=@CustID) as DD	
+
+						--select * from #TempTable5
+						set @ClearBalance=abs(@ClearBalance)
+						set @TotDelVal=abs(@TotDelVal)	
+						set @DebitGrace1=@TotDelVal*(isnull(@DebitGrace,0)/100)
+						if(cast(@DebitGrace1 as numeric(28,6))>cast(@ClearBalance as numeric(28,6)))	
+						begin
+							set @Acctype='CA'
+							update #TempDeliveryProcessing1 set AccType=@Acctype,AccName=@AcName where CustomerID=@CustID
+						end		
+						else
+						begin
+							select @FINID3=min(SRNO) from #TempTable5
+							select @FAXID1=max(SRNO) from #TempTable5
+							select @FINID1=min(SRNO) from #TempTable5
+							while @FAXID1>=@FINID1
+							begin
+								set @ProID=null
+								set @netvalue=null
+								set @UnitPriceQuan=null
+								set @Proid1=null
+								set @qtyDelv=null
+								select @ProID=ProductID,@netvalue=abs(NetValue),@UnitPriceQuan=abs(UnitPriceQuantity) from #TempTable5 where SRNO=@FINID1
+								select @Proid1=ProductID,@qtyDelv=isnull(Stock,0) from #TempDeliveryProcessing1 where ProductID=@ProID and CustomerID=@CustID
+								
+								if(cast(@ClearBalance as numeric(28,6))<cast(@TotDelVal as numeric(28,6)))
+								begin
+									if(@FINID3=@FINID1)
+									begin
+										if(cast(@MarkDebtBalance as numeric(28,6))>0)
+										begin
+											set @ClearBal=@ClearBalance+(@ClearBalance*(@MarkDebtBalance/100))
+										end
+										else
+											set @ClearBal=@ClearBalance	
+										set @ClearBal=@TotDelVal-@ClearBal
+									end				
+									if(@ClearBal>@netvalue)
+									begin
+										set @Acctype='HA'
+										update #TempDeliveryProcessing1 set AccType=@Acctype,AccName=@AcName where CustomerID=@CustID and ProductID=@ProID									
+										set @ClearBal=@ClearBal-@netvalue
+										set @ClearBalance=@ClearBal
+									end
+									else if(@ClearBal<@netvalue and @ClearBal<>0)
+									begin
+										if(@NoPartialHoldback=1)
+										begin
+											set @Acctype='HA'
+											update #TempDeliveryProcessing1 set AccType=@Acctype,AccName=@AcName where CustomerID=@CustID and ProductID=@ProID
+											set @ClearBal=0
+										end
+										else
+										begin
+
+											set @qtyDelv1=(@UnitPriceQuan/@netvalue)*@ClearBal
+											if(@qtyDelv<@qtyDelv1)
+												set @qtyDelv1=@qtyDelv
+											set @Acctype='HA'
+											update #TempDeliveryProcessing1 set Stock=abs(@qtyDelv1),AccType=@Acctype,AccName=@AcName where CustomerID=@CustID and ProductID=@ProID									
+											
+											select @CustomerIDCL=CustomerID,@ClientCL=Client,@UCCCL=UCC,@ScripCL=Scrip,@ProductIDCL=ProductID,
+											@ISINCL=ISIN,@QtyToDeliverCL=QtyToDeliver,@StockCL=Stock,@DelvOutgoingDeliveryCL=DelvOutgoingDelivery,
+											@DelvDesignatedBenAcCL=DelvDesignatedBenAc,@DelvHoldBackEntireACCL=DelvHoldBackEntireAC,@DelvMarkUpOnDebitBalanceCL=DelvMarkUpOnDebitBalance,
+											@DelvLedgerClearBalanceCL=DelvLedgerClearBalance,@DelvMarginClearBalanceCL=DelvMarginClearBalance,@DelvLedgerClosingBalanceCL=DelvLedgerClosingBalance,
+											@DelvMarginClosingBalanceCL=DelvMarginClosingBalance,@TotalDeliveryValueCL=TotalDeliveryValue,@AccTypeCL=AccType,@AccNameCL=AccName,
+											@AccountIDCL=AccountID from #TempDeliveryProcessing1 where CustomerID=@CustID and ProductID=@ProID
+											
+											set @qtyDelv1=abs(@qtyDelv)-abs(@qtyDelv1)
+											
+											insert into #TempDeliveryProcessing1(CustomerID,Client,UCC,Scrip,ProductID,ISIN,QtyToDeliver,Stock,DelvOutgoingDelivery,
+												DelvDesignatedBenAc,DelvHoldBackEntireAC,DelvMarkUpOnDebitBalance,DelvLedgerClearBalance,DelvMarginClearBalance,DelvLedgerClosingBalance,
+												DelvMarginClosingBalance,TotalDeliveryValue,AccType,AccName,AccountID)
+											values(@CustomerIDCL,@ClientCL,@UCCCL,@ScripCL,@ProductIDCL,@ISINCL,abs(@QtyToDeliverCL),abs(@qtyDelv1),@DelvOutgoingDeliveryCL,
+												@DelvDesignatedBenAcCL,@DelvHoldBackEntireACCL,@DelvMarkUpOnDebitBalanceCL,@DelvLedgerClearBalanceCL,@DelvMarginClearBalanceCL,@DelvLedgerClosingBalanceCL,
+												@DelvMarginClosingBalanceCL,@TotalDeliveryValueCL,'HA',@AccNameCL,@AccountIDCL)
+
+											set @ClearBal=0
+										end
+										set @ClearBalance=@ClearBal
+
+									end
+									else if(@ClearBal<@netvalue and @ClearBal=0)
+									begin
+										set @Acctype='HA'
+										update #TempDeliveryProcessing1 set AccType=@Acctype,AccName=@AcName where CustomerID=@CustID and ProductID=@ProID
+									end
+								end
+								else
+								begin
+									set @Acctype='HA'
+									update #TempDeliveryProcessing1 set AccType=@Acctype,AccName=@AcName where CustomerID=@CustID and ProductID=@ProID
+								end
+								select @FINID1=@FINID1+1
+							end
+						end
+						drop table #TempTable5	
+					end
+				end
+			end
+		end
+		select @FINID=@FINID+1
+	end
+	--------------------------End-----------------------------------------------------------------------
+	----------------------Stock----------------
+--select * from #TempDeliveryProcessing1	
+
+	insert into #TempDeliveryProcessing2(CustomerID,Client,UCC,Scrip,ProductID,ISIN,QtyToDeliver,Stock,DelvOutgoingDelivery,DelvDesignatedBenAc,DelvHoldBackEntireAC,DelvMarkUpOnDebitBalance,DelvNoPartialHoldBack,DelvDebitGrace,DelvLedgerClearBalance,DelvMarginClearBalance,DelvLedgerClosingBalance,DelvMarginClosingBalance,TotalDeliveryValue,AccType,AccName,AccountID,SettNumber,SettType)
+	select CustomerID,Client,UCC,Scrip,ProductID,ISIN,QtyToDeliver,Stock,DelvOutgoingDelivery,DelvDesignatedBenAc,DelvHoldBackEntireAC,DelvMarkUpOnDebitBalance,DelvNoPartialHoldBack,DelvDebitGrace,DelvLedgerClearBalance,DelvMarginClearBalance,DelvLedgerClosingBalance,DelvMarginClosingBalance,TotalDeliveryValue,AccType,AccName,AccountID,SettNumber,SettType
+	from 	#TempDeliveryProcessing1 
+	where 
+--	DelvLedgerClearBalance>=0
+--	and 
+	AccType='CA' and QtyToDeliver<>0
+	--and AccountID in(select DPAccounts_ID from Master_DPAccounts where DPAccounts_AccountType in('[HOLDBK]')) 
+
+--select * from #TempDeliveryProcessing2
+
+--select * from #TempStock where ProductID=203
+
+	set @QtyDeliver=null
+	set @ProductID=null
+	set @isin=null
+	set @Stocks=null
+	select @FAXID=max(SRNO) from #TempDeliveryProcessing2
+	select @FINID=min(SRNO) from #TempDeliveryProcessing2
+	while @FAXID>=@FINID
+	begin
+		set @QtyDeliver=null
+		set @ProductID=null
+		set @isin=null
+		set @Stocks=null
+		select @QtyDeliver=QtyToDeliver,@ProductID=ProductID,@isin=ISIN from #TempDeliveryProcessing2 where SRNO=@FINID
+		select @Stocks=Stock,@AccountID=AccountID from #TempStock where ProductID=@ProductID and ISIN=@isin
+		if(@Stocks>@QtyDeliver)
+		begin
+			update #TempDeliveryProcessing2 set Stock=@QtyDeliver,AccountID=@AccountID where SRNO=@FINID
+			update #TempStock set Stock=(@Stocks-@QtyDeliver) where ProductID=@ProductID and ISIN=@isin
+		end
+		else
+		begin
+			update #TempDeliveryProcessing2 set Stock=@Stocks,AccountID=@AccountID where SRNO=@FINID
+			update #TempStock set Stock=(@Stocks-@Stocks) where ProductID=@ProductID and ISIN=@isin
+		end
+		select @FINID=@FINID+1
+	end
+
+	--------------------------End-------------
+
+	update #TempClientDp set AcType='Primary' where AcType='Default'
+
+	insert into #TempMarginAC(ID,ShortName)
+	select cast(DPAccounts_ID as varchar) as ID,DPAccounts_ShortName from master_dpaccounts where DPAccounts_CompanyID=@CompanyID
+	and rtrim(DPAccounts_AccountType)='[MRGIN]' order by DPAccounts_ExchangeSegmentID 
+
+	insert into #TempHoldBackAC(ID,ShortName)
+	select cast(DPAccounts_ID as varchar) as ID,DPAccounts_ShortName from master_dpaccounts where DPAccounts_CompanyID=@CompanyID
+	and rtrim(DPAccounts_AccountType)='[HOLDBK]' order by DPAccounts_ExchangeSegmentID 
+
+--select * from #TempDeliveryProcessing	
+
+	select SRNO,CustomerID,Client,UCC,Scrip,ProductID,ISIN,REPLACE(QtyToDeliver, '.000000', '') as QtyToDeliver,case when Stock=0 then null else REPLACE(Stock, '.000000', '') end as Stock,DelvOutgoingDelivery,DelvDesignatedBenAc,DelvHoldBackEntireAC,DelvMarkUpOnDebitBalance,DelvLedgerClearBalance,DelvMarginClearBalance,DelvLedgerClosingBalance,DelvMarginClosingBalance,isnull(TotalDeliveryValue,0) as TotalDeliveryValue,AccType,AccName,
+	AccountID,(select DPAccounts_ShortName from Master_DPAccounts where DPAccounts_ID=AccountID) as FromAccount,SettNumber,SettType,
+	(select top 1 case when dpd_poa=1 and dpd_accountType='Default' then 'G' when dpd_poa=0 and dpd_dpcode in(select exch_TMCode from tbl_master_companyExchange) and dpd_accountType='Default' then 'B'
+		else 'N' end from tbl_master_contactdpdetails where dpd_cntId=CustomerID) as ColourType,
+	(select branch_code from tbl_master_branch where branch_id in(select cnt_branchID from tbl_master_contact where cnt_internalID=CustomerID)) as BranchCode 
+	from #TempDeliveryProcessing2 where AccType='CA' and QtyToDeliver<>0
+	and AccountID in(select DPAccounts_ID from Master_DPAccounts where DPAccounts_AccountType in('[HOLDBK]')) 
+	--and DelvLedgerClearBalance>=0
+	order by Client
+	select * from #TempClientDp --where CustomerID='CLS0000568'
+	select * from #TempMarginAC
+	select * from #TempHoldBackAC
+	select * from #TempProfileMemberShow  --where CustomerID='CLS0000726'
+
+	drop table #TempDeliveryProcessing
+	drop table #TempDeliveryProcessing1
+	drop table #TempDeliveryProcessing2
+	drop table #TempStock
+	drop table #TempClientDp
+	drop table #TempProfileMember
+	drop table #TempProfileMemberShow
+	drop table #TempDistinctCustID
+	drop table #TempCustIDForProfile
+	drop table #TempMarginAC
+	drop table #TempHoldBackAC
+	
+	if @@ERROR<>0
+		ROLLBACK
+	ELSE
+		COMMIT
+	
+	end try
+	begin catch
+		if @@trancount>0
+		begin
+			rollback
+		end
+	end catch
+End
+
+--exec FetchHoldbackRelease '2010-2011','COR0000001',16,'2010-09-16 00:00:00.000','''CL 0000001''','6'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

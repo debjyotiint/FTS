@@ -1,0 +1,316 @@
+﻿@model Models.GpsStatusClassInput
+@{
+    ViewBag.Title = "GPS List";
+
+
+}
+
+<h2>GPS Status List</h2>
+
+<script type="text/javascript" src="~/Scripts/globalize.js"></script>
+<script src="~/Scripts/cultures/globalize.cultures.js"></script>
+
+
+<script src="~/Scripts/chosen/chosen.jquery.min.js"></script>
+<link href="~/Scripts/chosen/chosen.min.css" rel="stylesheet" />
+
+
+
+<script>
+
+    $(function () {
+
+   
+
+        $("#drpuser").chosen({
+            width: "100%"
+        })
+
+
+      
+        $('#txtfromDate').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        });
+
+        $('#txttoDate').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            mask: true,
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        });
+
+
+        $('body').on('click', '#btnshow', function () {
+
+
+            if ($("#drpuser").val() != '') {
+
+                var surl = '@Url.Action("GetGpsStatusList", "GPSStatus")';
+                var usr = $("#drpuser").val();
+                var shop = $("#drpshop").val();
+                var state = $("#drpstate").val();
+
+                $.ajax({
+                    url: surl,
+                    async: false,
+                    data: {
+                        selectedusrid: usr,
+                        Fromdate: $('#txtfromDate').val(),
+                        Todate: $('#txttoDate').val(),
+                        stateid: state,
+                        shopId: shop
+                    },
+                    type: 'POST',
+
+                    success: function (data) {
+
+                        $('#refreshgrid').html(data);
+
+                    },
+                    error: function () {
+                        // alert('error');
+                    },
+                });
+
+            }
+
+            else {
+
+                $('#refreshgrid').html('');
+                $.jAlert({
+                    'title': 'Alert!',
+                    'content': 'Select User to show',
+                    'theme': 'dark_blue'
+                });
+            }
+        });
+
+
+        $('#ddlAppIds').on('change', function () {
+            if ($("#ddlAppIds option:selected").index() > 0) {
+                var selectedValue = $(this).val();
+                var desg = $("#drpdesignation").val();
+                var usrtype = $("#ddlusertypes").val();
+                $('#ddlAppIds').prop("selectedIndex", 0);
+                var url = '@Url.Action("ExportGpsStatusList", "GPSStatus", new { type = "_type_" })'
+                window.location.href = url.replace("_type_", selectedValue);
+
+
+                if ($("#drpuser").val() != '') {
+                       var surl = '@Url.Action("GetGpsStatusList", "GPSStatus")';
+                    var usr = $("#drpuser").val();
+                    var shop = $("#drpshop").val();
+                    var state = $("#drpstate").val();
+                    $.ajax({
+                        url: surl,
+                        async: false,
+                        data: {
+                            selectedusrid: usr,
+                            Fromdate: $('#txtfromDate').val(),
+                            Todate: $('#txttoDate').val(),
+                            stateid: state,
+                            shopId: shop
+                        },
+                        type: 'POST',
+
+                        success: function (data) {
+
+                            $('#refreshgrid').html(data);
+                        },
+                        error: function () {
+                            // alert('error');
+                        },
+
+                    });
+                }
+
+                else {
+
+                    $('#refreshgrid').html('');
+                    $.jAlert({
+                        'title': 'Alert!',
+                        'content': 'Select User to show',
+                        'theme': 'dark_blue'
+                    });
+                }
+            }
+        });
+
+
+
+
+
+    });
+
+
+    function OpenSHopVisitList(usrid) {
+       
+        var surl = '@Url.Action("ShopListActivity", "GPSStatus")';
+        var usr = $("#drpuser").val();
+        $.ajax({
+            url: surl,
+            async: false,
+            data: {
+                selectedusrid: usrid,
+                Fromdate: $('#txtfromDate').val(),
+                Todate: $('#txttoDate').val(),
+            },
+            type: 'POST',
+            success: function (data) {
+               
+                $("#divModalBody").html(data);
+                $("#myModal").modal('show');
+            },
+            error: function () {
+            },
+
+        });
+     
+    
+    }
+
+
+
+</script>
+<style>
+    .padTabl > tbody > tr > td {
+        padding: 3px 10px;
+    }
+
+    #tblshoplist > thead > tr > th {
+        background: #5F65AD !important;
+        border-top: 1px solid #0f87cc;
+        color: #fff;
+    }
+
+    #tblshoplist tbody > tr > th, #tblshoplist tfoot > tr > th, #tblshoplist thead > tr > td, #tblshoplist tbody > tr > td, #tblshoplist tfoot > tr > td {
+        padding: 1px 5px !important;
+    }
+
+
+
+    .scrooler {
+        width: 100%;
+        overflow-x: scroll;
+    }
+
+    .w1 {
+        width: 107px;
+    }
+
+    .date {
+        width: 62px;
+    }
+    .labelTbl>tbody>tr>td {
+        padding-right:20px;
+    }
+</style>
+
+
+
+<div class="form_main">
+
+        <table class="labelTbl">
+
+            <tr>
+
+                <td ><h5>User List: </h5></td>
+
+                <td style="width:200px;">
+
+
+                    @*@Html.DropDownListFor(m => m.selectedusrid, new SelectList(Model.userlsit, "UserID", "username", Model.selectedusrid), "-Select-", new { @id = "drpuser", @class = "whclass" })*@
+
+                    <select id="drpuser" name="ddRoles" data-placeholder="Click or Type Here..." class="whclass">
+
+                        <option value="0">All</option>
+                        @foreach (var item in Model.userlsit)
+                            
+                        {
+                            if (Model.selectedusrid == item.UserID)
+                            {
+                                <option value="@item.UserID" selected="selected">@item.username</option>
+                            }
+                            else
+                            {
+                                <option value="@item.UserID">@item.username</option>
+
+                            }
+                        }
+                    </select>
+
+                </td>
+
+
+                <td  id="dt1"><h5>From Date : </h5></td>
+
+                <td id="dt2" style="width:200px">
+                    @Html.TextBoxFor(m => m.Fromdate, new { @class = "form-control", @id = "txtfromDate", @tabindex = 2 })
+                </td>
+                <td  id="dt3" style="padding-left: 0;"><h5>To Date : </h5></td>
+
+                <td id="dt4" style="width:200px;">
+                    @Html.TextBoxFor(m => m.Todate, new { @class = "form-control", @id = "txttoDate", @radonly = true, @tabindex = 3 })
+                </td>
+
+
+                <td style="width: 180px" colspan="3">
+
+                    <button type="button" id="btnshow" class="btn btn-success btnwidth" tabindex=4>Show</button>
+
+                    <select name="ddlAppIds" class="btn btn-sm btn-primary" id="ddlAppIds">
+                        <option value="0">Export to</option>
+
+                        <option value="2">XLSX</option>
+
+                    </select>
+                </td>
+
+            </tr>
+
+           
+        </table>
+
+  
+
+    <br />
+
+    <div class="clear"></div>
+    <div id="refreshgrid">
+
+    </div>
+
+
+
+    @{
+
+        Html.RenderAction("GetGpsStatusList1", "GPSStatus");
+        
+      }
+    
+</div>
+
+<div id="myModal" class="modal fade" data-backdrop="static" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:420px" >
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Shop Visit List</h4>
+            </div>
+            <div class="modal-body">
+                <div id="divModalBody" style="padding-left:20px;">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

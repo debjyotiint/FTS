@@ -1,0 +1,163 @@
+<?xml version="1.0" ?> 
+<DosPrintDoc>
+	<GeneralSetting LinePerPage="27" ColumnsPerLine="236" PrintPageNo="True" PrintDate="True" PrintTime="False" TotalLinePerPage="48"></GeneralSetting>
+	<ConnectionString ServerName="CLASSIC" DatabaseName="VEDIKACRM" UserName="sa" Password="VEDIKA"></ConnectionString>
+	<QueryTemplate>select * from Mst_Company</QueryTemplate>
+  <Sort><DataField Field="CustomerTrades_ContractNoteNumber"></DataField></Sort>
+	<Condition></Condition>
+   <FormulaField Name="TotalQty" Field="CustomerTrades_UnitPriceQuantity" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol"  Function="Sum" Format="0" ValueType="N" UseAbsoluteValue="True">
+		<Action ConditionString="CustomerTrades_BrokerageType=D" Activity="+" />
+   </FormulaField>
+  <FormulaField Name="SqrQty_Sell" Field="CustomerTrades_UnitPriceQuantity" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol"  Function="Sum" Format="0" ValueType="N" UseAbsoluteValue="True">
+    <Action ConditionString="ExchangeTrades_BuySellFlag=2AndCustomerTrades_BrokerageType=S" Activity="+" />
+  </FormulaField>
+ <FormulaField Name="SqrQty_Buy" Field="CustomerTrades_UnitPriceQuantity" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol"  Function="Sum" Format="0" ValueType="N" UseAbsoluteValue="True">
+		<Action ConditionString="ExchangeTrades_BuySellFlag=1AndCustomerTrades_BrokerageType=S" Activity="+" />
+ </FormulaField>
+  <FormulaField Name="TotalBrokerage" Field="CustomerTrades_TotalBrokerage" Function="Sum" Format="0.00" ValueType="N" >
+    <Action ConditionString="ExchangeTrades_BuySellFlag=1" Activity="+" />
+  </FormulaField>  
+  <FormulaField Name="TotalQty_Buy" Field="CustomerTrades_UnitPriceQuantity" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol"  Function="Sum" Format="0" ValueType="N" UseAbsoluteValue="True">
+    <Action ConditionString="ExchangeTrades_BuySellFlag=1AndCustomerTrades_BrokerageType=D" Activity="+" />
+  </FormulaField>
+  <FormulaField Name="TotalQty_Sell" Field="CustomerTrades_UnitPriceQuantity" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol" Function="Sum" Format="0" ValueType="N" UseAbsoluteValue="True">
+    <Action ConditionString="ExchangeTrades_BuySellFlag=2AndCustomerTrades_BrokerageType=D" Activity="+" />
+  </FormulaField>  
+  <FormulaField Name="TotalMarketValue_Buy" Field="CustomerTrades_MarketValue" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol" Function="Sum" Format="0.00" ValueType="N" UseAbsoluteValue="True">
+    <Action ConditionString="ExchangeTrades_BuySellFlag=1" Activity="+" />
+  </FormulaField>
+  <FormulaField Name="TotalMarketValue_Sell" Field="CustomerTrades_MarketValue" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol" Function="Sum" Format="0.00" ValueType="N" UseAbsoluteValue="True">
+    <Action ConditionString="ExchangeTrades_BuySellFlag=2" Activity="+" />
+  </FormulaField>  
+  <FormulaField Name="TotalBrokerage_Buy" Field="CustomerTrades_TotalBrokerage" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol" Function="Sum" Format="0.00" ValueType="N" UseAbsoluteValue="True">
+    <Action ConditionString="ExchangeTrades_BuySellFlag=1" Activity="+" />
+  </FormulaField>
+  <FormulaField Name="TotalBrokerage_Sell" Field="CustomerTrades_TotalBrokerage" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol" Function="Sum" Format="0.00" ValueType="N" UseAbsoluteValue="True">
+    <Action ConditionString="ExchangeTrades_BuySellFlag=2" Activity="+" />
+  </FormulaField>
+  <FormulaField Name="TotalServiceTax_Buy" Field="TotalTAX" Function="Sum" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol" Format="0.00" ValueType="N" UseAbsoluteValue="True">
+    <Action ConditionString="ExchangeTrades_BuySellFlag=1" Activity="+" />
+  </FormulaField>
+  <FormulaField Name="TotalServiceTax_Sell" Field="TotalTAX" Function="Sum" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol" Format="0.00" ValueType="N" UseAbsoluteValue="True">
+    <Action ConditionString="ExchangeTrades_BuySellFlag=2" Activity="+" />
+  </FormulaField>
+  <FormulaField Name="TotalSTT_Buy" Field="Sttax_TotalStt" Function="Sum" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol" Format="0.00" ValueType="N" UseAbsoluteValue="True">
+    <Action ConditionString="ExchangeTrades_BuySellFlag=1" Activity="+" />
+  </FormulaField>
+  <FormulaField Name="TotalSTT_Sell" Field="Sttax_TotalStt" Function="Sum" ResetOnChangeOfField="ExchangeTrades_SecuritySymbol" Format="0.00" ValueType="N" UseAbsoluteValue="True">
+    <Action ConditionString="ExchangeTrades_BuySellFlag=2" Activity="+" />
+  </FormulaField>  
+  <ReportGroup>    
+    <GroupField Name="CustomerTrades_ContractNoteNumber" Field="CustomerTrades_ContractNoteNumber" ResetPageNo="True" NewPageAfter="True" />
+    <GroupField Name="ExchangeTrades_SecuritySymbol" Field="ExchangeTrades_SecuritySymbol" ResetPageNo="True" NewPageAfter="True" />
+  </ReportGroup>
+
+	<PageHeader>
+    <DataField Field="branchDescription"                        X="184" Y="5" Bold="False"  Visible="True" Alignment="AlignLeft"></DataField>
+    <CompositField Field="firstname+' '+middlename+' '+lastname+'['+cnt_UCC+']'"  X="2" Y="6" Visible="True" Bold="True" />
+    <DataField Field="branch_address1"                           X="184" Y="6" Bold="False"  Visible="True" Alignment="AlignLeft"></DataField>
+
+    <DataField Field="add_address1"                               X="2" Y="7"    Bold="False"  Visible="True" Alignment="AlignLeft"></DataField>
+    <DataField Field="CustomerTrades_ContractNoteNumber"         X="160" Y="7"  Bold="False"  Visible="True" Alignment="AlignLeft"></DataField>
+    <CompositField Field="BranchCity+ ' ' +branch_pin"           X="184" Y="7"  Visible="True"/>
+    <CompositField Field="add_address2+' '+add_address3"      X="2" Y="8"    Visible="True"/>    
+    <DataField Field="ExchangeTrades_TradeDate"                  X="160" Y="8"  Bold="False" Format="dd/MM/yyyy" ValueType="D"   Visible="True"  Alignment="AlignLeft"></DataField>
+    <CompositField Field="'Tel No.-'+branch_phone+' MOB '+branch_cpPhone" X="184" Y="8"  Visible="True"/>
+    <CompositField Field="CustomerCity+ ':' +add_pin"            X="2" Y="9" Visible="True"/>
+    <DataField Field="ExchangeTrades_SettlementNumber"           X="160" Y="9"   Bold="False"  Visible="True" Alignment="AlignLeft"></DataField>
+    <DataField Field="ExchangeTrades_SettlementType"           X="170" Y="9"   Bold="False"  Visible="True" Alignment="AlignLeft"></DataField>
+    <TextField Text="Pan No:" X="2" Y="10" IncrementY="1"  Bold="True" Visible="True" Alignment="AlignLeft"  />            
+    <DataField Field="CustomerPanCard"           X="10" Y="10"   Bold="True"  Visible="True" Alignment="AlignLeft"></DataField>
+    <DataField Field="FundpayoutDate"                            X="160" Y="10" Bold="False" Format="dd/MM/yyyy" ValueType="D"   Visible="True"   Alignment="AlignLeft"></DataField>
+    
+  </PageHeader> 	
+  <BodyHeader Repeat="True" NoOfLine="2">
+	</BodyHeader>	
+  <Body Loop="True" NoOfLine="1">
+    <DataField Field="ExchangeTrades_OrderNumber"                                        X="2"   Y="17"   Visible="True" />
+    <DataField Field="ExchangeTrades_OrderEntryTime"                                     X="20"  Y="17" Visible="True" Format="hh:mm:ss" ValueType="D"/>
+    <DataField Field="ExchangeTrades_TradeNumber"                                        X="32"  Y="17" Visible="True"  Format=""  />
+    <DataField Field="ExchangeTrades_TradeEntryTime"                                     X="48"  Y="17" Visible="True" Format="hh:mm:ss" ValueType="D" />
+    <DataField Field="CustomerTrades_UnitPriceQuantity"                                  X="61"  Y="17" Visible="True"  ValueType="N" PrintCondition="True" ConditionString="ExchangeTrades_BuySellFlag=1" UseAbsoluteValue="True"    Format="0"  Alignment="AlignRight"/>
+    <DataField Field="CustomerTrades_UnitPrice"                                          X="69" Y="17" Visible="True"  ValueType="N" PrintCondition="True" ConditionString="ExchangeTrades_BuySellFlag=1" Format="0.0000" Alignment="AlignRight"/>
+    <DataField Field="CustomerTrades_MarketValue"                                        X="81" Y="17" Visible="True"  ValueType="N" PrintCondition="True" ConditionString="ExchangeTrades_BuySellFlag=1" Format="0.00" UseAbsoluteValue="true" Alignment="AlignRight"/>
+    <DataField Field="CustomerTrades_TotalBrokerage"                                     X="99" Y="17" Visible="True"  ValueType="N" PrintCondition="True" ConditionString="ExchangeTrades_BuySellFlag=1" Format="0.0000" Alignment="AlignRight"/>
+    <DataField Field="TotalTAX"                                                          X="109"  Y="17" Visible="True"  ValueType="N" PrintCondition="True" ConditionString="ExchangeTrades_BuySellFlag=1" Format="0.00" Alignment="AlignRight"/>
+    <TextField Text="" X="119" Y="17"  Bold="False" Visible="True" Alignment="AlignLeft"  />
+    <CompositField Field="ExchangeTrades_SecuritySymbol+' '+ExchangeTrades_SecurityType" X="131" Y="17" Visible="True"/>
+    <TextField Text="[" X="150" Y="17" Bold="False" Visible="True" Alignment="AlignLeft" PrintCondition="True" ConditionString="CustomerTrades_BrokerageType=D"  />
+    <DataField Field="CustomerTrades_BrokerageType"  X="152" Y="17" Visible="True"  ValueType="N" PrintCondition="True" ConditionString="CustomerTrades_BrokerageType=D" Format="0.00" UseAbsoluteValue="true" Alignment="AlignRight"/>
+    <TextField Text="]" Bold="False" Visible="True" X="154" Y="17" Alignment="AlignLeft" PrintCondition="True" ConditionString="CustomerTrades_BrokerageType=D"  />
+    <DataField Field="CustomerTrades_UnitPriceQuantity"                                  X="164"  Y="17" Visible="True" PrintCondition="True" ConditionString="ExchangeTrades_BuySellFlag=2" Format="0" ValueType="N"   Alignment="AlignRight"/>
+    <DataField Field="CustomerTrades_UnitPrice"                                          X="170" Y="17" Visible="True" PrintCondition="True" ConditionString="ExchangeTrades_BuySellFlag=2" Format="0.0000" ValueType="N"  Alignment="AlignRight"/>
+    <DataField Field="CustomerTrades_MarketValue"                                        X="182" Y="17" Visible="True" PrintCondition="True" ConditionString="ExchangeTrades_BuySellFlag=2" Format="0.0000" ValueType="N"  UseAbsoluteValue="false" Alignment="AlignRight"/>
+    <DataField Field="CustomerTrades_TotalBrokerage"                                     X="201" Y="17" Visible="True" PrintCondition="True" ConditionString="ExchangeTrades_BuySellFlag=2" Format="0.00" ValueType="N"  Alignment="AlignRight"/>
+    <TextField Text="" X="213" Y="17"  Bold="False" Visible="True" Alignment="AlignLeft"  />
+    <DataField Field="TotalTAX"                                                          X="215"  Y="17" Visible="True" PrintCondition="True" ConditionString="ExchangeTrades_BuySellFlag=2" Format="0.00" ValueType="N"  Alignment="AlignLeft"/>
+    
+  </Body>
+  <GroupFooter Repeat="True" NoOfLine="1">
+    <FormulaField Name="SqrQty_Buy" X="61" Y="17" Format="0" Visible="True" ValueType="N" UseAbsoluteValue="True" PrintCondition="True" ConditionString="[Formula]SqrQty_Buy!=0" Alignment="AlignRight"/>
+    <TextField Text="" X="69" Y="17"  Bold="False" Visible="True" Alignment="AlignLeft"  />
+    <DataField Field="BuyNetValue"  X="81"   Y="17" Format="0.00" Visible="True" Bold="True" ValueType="N" UseAbsoluteValue="True" Alignment="AlignRight"/>
+    <TextField Text="" X="99" Y="17"  Bold="False" Visible="True" Alignment="AlignLeft"  />
+    
+    <TextField Text="" X="129" Y="17"  Bold="False" Visible="True" Alignment="AlignLeft"  />
+    <TextField Text="Sqr-Diff:" X="132" Y="17" Visible="True" Bold="True" Alignment="AlignLeft"/>
+
+    <FormulaField Name="SqrQty_Sell" X="164" Y="17" Format="0" Visible="True" ValueType="N" UseAbsoluteValue="True" PrintCondition="True" ConditionString="SellNetValue!=0.00" Alignment="AlignRight"/>
+    <TextField Text="" X="170" Y="17"  Bold="False" Visible="True" Alignment="AlignLeft"  />
+    <DataField Field="SellNetValue"  X="196"   Y="17" Format="0.00" Visible="True" Bold="True" ValueType="N" UseAbsoluteValue="True" Alignment="AlignLeft"/>
+    <DataField Field="Sttax_DifferenceStt" X="227" Y="17" Visible="True"  ValueType="N" PrintCondition="True" Bold="True" Format="0.00" Alignment="AlignLeft"/>
+    
+    <FormulaField Name="TotalQty_Buy" IncrementY="1" X="61" Y="18" Function="Sum"  Format="0" Visible="True" ValueType="N" UseAbsoluteValue="True" PrintCondition="True" ConditionString="[Formula]TotalQty_Buy!=0" Alignment="AlignRight"/>
+    <TextField Text="" X="69" Y="18"  Bold="False" Visible="True" Alignment="AlignLeft"  />
+    <DataField Field="DeliverybuyValue" X="81" Y="18" Format="0.00" Visible="True" PrintCondition="True" Bold="True" ValueType="N"  UseAbsoluteValue="true" Alignment="AlignRight" ConditionString="[Formula]TotalQty_Buy!=0"/>
+    <TextField Text="" X="99" Y="17"  Bold="False" Visible="True" Alignment="AlignLeft"  />
+    
+    <DataField Field="Sttax_DeliveryBuyStt" X="122" Y="18" Format="0.00" Visible="True" PrintCondition="True" Bold="True" ValueType="N"  UseAbsoluteValue="true" Alignment="AlignLeft" ConditionString="[Formula]TotalQty_Buy!=0"/>
+    <TextField Text="" X="129" Y="18"  Bold="False" Visible="True" Alignment="AlignLeft"  />
+    <TextField Text="Delivery Qty: " X="132" Y="18"  Bold="True" Visible="True" Alignment="AlignLeft"  PrintCondition="True" ConditionString="[Formula]TotalQty!=0"/>
+
+    <FormulaField Name="TotalQty_Sell" X="166" Y="18" Function="Sum" Format="0" Visible="True" ValueType="N" UseAbsoluteValue="True" PrintCondition="True" ConditionString="[Formula]TotalQty_Sell!=0"/>
+    <DataField Field="DeliverysellValue" X="190" Y="18" Format="0.00" Visible="True" PrintCondition="True" Bold="True" ValueType="N"  UseAbsoluteValue="true" Alignment="AlignLeft" ConditionString="[Formula]TotalQty_Sell!=0"/>
+    <DataField Field="Sttax_DeliverySaleStt" X="220" Y="18" Format="0.00" Visible="True" PrintCondition="True" Bold="True" ValueType="N"  UseAbsoluteValue="true" Alignment="AlignRight" ConditionString="[Formula]TotalQty_Sell!=0"/>
+    <TextField Text="" X="232" Y="18"  Bold="False" Visible="True" Alignment="AlignLeft"  />
+    
+  </GroupFooter>
+    <PageFooter Repeat="True" NoOfLine="7">
+    <TextField Text="Total:" X="2" Y="29" Bold="True" Visible="True" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <DataField Field="BuyUnitPriceQuantity" X="63"   Y="29"  Visible="True"  ValueType="N" PrintCondition="True" Bold="True" Format="0" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+     
+    <DataField Field="BuyMarketValue" X="87"   Y="29" Visible="True"  ValueType="N" PrintCondition="True" Bold="True" Format="0.00" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    
+    <DataField Field="SellUnitPriceQuantity" X="168"   Y="29" Visible="True"  ValueType="N" PrintCondition="True" Bold="True" Format="0" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <DataField Field="SellMarketValue" X="190"   Y="29" Visible="True"  ValueType="N" PrintCondition="True" Bold="True" Format="0.00" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <TextField Text="Brokerage:Rs." X="2" Y="33" Bold="True" Visible="True" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <DataField Field="ContractNotes_TotalBrokerage" Visible="True" Bold="True" Format="0.00" ValueType="N" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <CompositField Field="'Service Tax &amp; E Cess@'+TotalServiceTax+'%'" X="20" Y="33" Bold="True" Visible="True" PrintOnLastPageOnly="True" />
+    <TextField Text="(" X="48" Y="33" Bold="True" Visible="True" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <DataField Field="Data" X="50" Y="33" Visible="True" Format="0.00" Bold="True" ValueType="N" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <TextField Text=")" X="78" Y="33" Bold="True" Visible="True" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <TextField Text=":Rs." X="80" Y="33" Bold="True" Visible="True" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+	<CompositField Field="ContractNotes_TotalServiceTax+ContractNotes_TotalEduCess+ContractNotes_TotalHgrEduCess" X="84" Y="33" Visible="True" Bold="True" Format="0.00" ValueType="N" UseAbsoluteValue="true" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <TextField Text="Securities Transaction Tax:Rs." X="93" Y="33" Bold="True" Visible="True" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <DataField Field="sttaxsummary_NetSTT" X="123" Y="33" Bold="True" Visible="True" Format="0.00" ValueType="N" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <TextField Text="Stamp Duty:Rs. " X="143" Y="33" Bold="True" Visible="True" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <DataField Field="ContractNotes_StampDuty" X="160" Y="33" Bold="True" Visible="True" Format="0.00" ValueType="N" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <TextField Text="Turnover Tax:Rs." X="173" Y="33" Bold="True" Visible="True" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <DataField Field="ContractNotes_TransactionCharges" X="191" Y="33" Bold="True" Visible="True" Format="0.00" ValueType="N" Alignment="AlignLeft" PrintOnLastPageOnly="True" />    
+    <TextField Text="Net Amount Receivable From you: Rs." X="110" Y="34" Bold="True" Visible="True" Alignment="AlignLeft" PrintOnLastPageOnly="True" PrintCondition="True" ConditionString="ContractNotes_NetAmount&lt;0"/>
+    <TextField Text="Net Amount Payable To you: Rs." X="110" Y="34" Bold="True" Visible="True" Alignment="AlignLeft" PrintOnLastPageOnly="True" PrintCondition="True" ConditionString="ContractNotes_NetAmount&gt;0"/>
+    <DataField Field="ContractNotes_NetAmount" X="142" Y="34" Bold="True" Visible="True" Format="0.00" ValueType="N" Alignment="AlignLeft" UseAbsoluteValue="true" PrintOnLastPageOnly="True" />
+    <DataField Field="ExchangeTrades_TradeDate"  X="13" Y="42" Bold="True" Visible="True" Format="dd/MM/yyyy" ValueType="D" />       
+    <TextField Text="Continued to page " X="38" Y="43" Bold="True" Visible="True" Alignment="AlignLeft" PrintExceptLastPage="True" />
+    <TextField Text="End Of Page " X="38" Y="43" Bold="True" Visible="True" Alignment="AlignLeft" PrintOnLastPageOnly="True" />
+    <PrintPageNo X="56" Y="43" PrintExceptLastPage="True" DisplayNextPageNo="True"/>
+    <PrintPageNo X="51" Y="43" PrintOnLastPageOnly="True"/>   
+  </PageFooter>
+  <ReportFooter Repeat="True" NoOfLine="2">
+  </ReportFooter>
+  
+
+</DosPrintDoc>

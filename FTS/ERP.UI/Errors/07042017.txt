@@ -1,0 +1,13 @@
+Page :    http://localhost:7665/OMS/management/Master/frm_BranchUdfPopUp.aspx?Type=SR&&KeyVal_InternalID=Add
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.ApplicationException: Response.Redirect cannot be called in a Page callback.
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at BusinessLogicLayer.DBEngine.GetConnection() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\BusinessLogicLayer\DBEngine.cs:line 83
+   at BusinessLogicLayer.DBEngine.GetDataTable(String cTableName, String cFieldName, String cWhereClause) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\BusinessLogicLayer\DBEngine.cs:line 777
+   at ERP.OMS.Management.Master.management_frm_BranchUdfPopUp.loadTab() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Master\frm_BranchUdfPopUp.aspx.cs:line 603
+   at ERP.OMS.Management.Master.management_frm_BranchUdfPopUp.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Master\frm_BranchUdfPopUp.aspx.cs:line 58
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

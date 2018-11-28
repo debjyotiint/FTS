@@ -1,0 +1,3 @@
+Page :    http://localhost:7665/OMS/Management/Activities/CustomerReturn.aspx
+Error Message : e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\CustomerReturn.aspx(234): error CS0103: The name 'lblAvailableStk' does not exist in the current context
+Inner Message : 

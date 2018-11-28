@@ -1,0 +1,7 @@
+Page :    http://localhost:7665/OMS/management/ActivityManagement/ActivityNewSales.aspx?id1=5&Aid=34421
+Error Message : The server tag is not well formed.
+Inner Message : System.Web.HttpException (0x80004005): The server tag is not well formed.
+   at System.Web.UI.TemplateParser.ProcessError(String message)
+   at System.Web.UI.TemplateParser.DetectSpecialServerTagError(String text, Int32 textPos)
+   at System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   at System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)

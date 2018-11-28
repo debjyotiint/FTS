@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Models.GpsStatusClasstOutput>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#tblshoplist").dataTable({
+            "aaSorting": [],
+            "ordering": false,
+            searching: false
+        });
+
+
+    });
+
+   
+</script>
+
+<style>
+    #tblshoplist {
+        border: 1px solid #ccc;
+        border-top: transparent;
+    }
+
+        #tblshoplist > thead > tr > th {
+            background: #0f87cc;
+            border-top: 1px solid #0f87cc;
+            color: #fff;
+        }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+        tfoot input {
+            width: 100%;
+            padding: 3px;
+            box-sizing: border-box;
+        }
+    #tblshoplist > tbody > tr > td {
+        padding:5px 8px !important;;
+    }
+</style>
+
+@*@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "GridView";
+
+    settings.KeyFieldName = "gps_id";
+
+    //settings.SetDataItemTemplateContent(cell =>
+    //{
+    //    ViewContext.Writer.Write("<span style=\"color:red\">" + cell.Text + "</span>");
+    //});
+
+    settings.CallbackRouteValues = new { Controller = "GPSStatus", Action = "GetGpsStatusList1", Fromdate = ViewData["Fromdate"], Todate = ViewData["Todate"] };
+
+
+    settings.Columns.Add("UserName");
+    settings.Columns.Add("total_shop_visited");
+    settings.Columns.Add("total_time_spent_at_shop");
+ 
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSize =2;
+    settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.TopAndBottom;
+
+
+}).Bind(Model).GetHtml()*@
+
+
+
+<div class="x_content">
+    <div class="rTable">
+        <table id="tblshoplist" class="table table-bordered table-bordered">
+            <thead>
+                <tr>
+
+                    <th>User Name</th>
+                    <th>No. Of Shops Visited</th>
+                    <th>Total Working Duration</th>
+                    <th>GPS Inactive Duration</th>
+                    <th>Ratio%</th>
+                    <th>Show Details</th>
+                   
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.UserName</td>
+                            <td>@(item.total_shop_visited)</td>
+                            <td>@item.total_time_spent_at_shop</td>
+                            <td>@item.gps</td>
+                            <td>@item.Ratio</td>
+                            <td><a href="javascript:void(0);" onclick="OpenSHopVisitList('@item.user_id')">View Details</a></td>
+
+                        </tr>
+                    }
+                }
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,3 @@
+Page :    http://localhost:7665/OMS/management/Master/industrySector.aspx
+Error Message : e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Master\industrySector.aspx(240): error CS1061: 'ASP.oms_management_master_industrysector_aspx' does not contain a definition for 'PrincipalSelect_Selecting' and no extension method 'PrincipalSelect_Selecting' accepting a first argument of type 'ASP.oms_management_master_industrysector_aspx' could be found (are you missing a using directive or an assembly reference?)
+Inner Message : 

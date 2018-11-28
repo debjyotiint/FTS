@@ -1,0 +1,12 @@
+Page :    http://localhost:7665/OMS/management/ActivityManagement/Sales_Activity.aspx
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.Data.SqlClient.SqlException (0x80131904): Column name or number of supplied values does not match table definition.
+   at DataAccessLayer.ProcedureExecute.GetTable() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\DataAccessLayer\ProcedureExecute.cs:line 75
+   at BusinessLogicLayer.StockDetails.GetAllProduct() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\BusinessLogicLayer\StockDetails.cs:line 170
+   at ERP.OMS.Management.ActivityManagement.Sales_Activity.BindAllProduct() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\ActivityManagement\Sales_Activity.aspx.cs:line 537
+   at ERP.OMS.Management.ActivityManagement.Sales_Activity.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\ActivityManagement\Sales_Activity.aspx.cs:line 109
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+ClientConnectionId:b6ac5304-9242-4b6e-a06b-ce311487a8c4

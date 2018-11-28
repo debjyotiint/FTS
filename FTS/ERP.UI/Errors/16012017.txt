@@ -1,0 +1,11 @@
+Page :    http://localhost:7665/OMS/Management/Master/ShowHistory_Phonecall.aspx?id1=2
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.ArgumentException: Column 'phc_leadcotactId' does not belong to table Table.
+   at System.Data.DataRow.GetDataColumn(String columnName)
+   at System.Data.DataRow.get_Item(String columnName)
+   at ERP.OMS.Management.Master.management_Activities_ShowHistory_Phonecall.ShowHistory() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Master\ShowHistory_Phonecall.aspx.cs:line 76
+   at ERP.OMS.Management.Master.management_Activities_ShowHistory_Phonecall.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Master\ShowHistory_Phonecall.aspx.cs:line 22
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

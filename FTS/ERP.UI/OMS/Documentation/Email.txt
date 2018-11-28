@@ -1,0 +1,8 @@
+1> Just paste this influxEmail.exe within Application Folder
+2> Create a txt file with naming 'web.txt' in the application folder. Example of the file is given here.
+        Example:
+                <add key="DBConnectionDefault" value="Data Source=LOCALSERVER\SQL2008R2;Initial Catalog=iNakamichi_28062012;User ID=sa; Password=sap@123" />
+                <add key="CRMfolderNameWithPath" value="\\Binay\c$\influx_installation\Application\" />
+
+3> Create a folder with naming 'emailconnection' within the Application folder and Share it
+    and give the permission to Everyone.

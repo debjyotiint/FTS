@@ -1,0 +1,8 @@
+Page :    http://localhost:7665/OMS/management/ajax_list.aspx?getCompanyByLetters=1&search_param=Mutual Fund&letters=%25
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.NullReferenceException: Object reference not set to an instance of an object.
+   at ERP.OMS.Management.management_ajax_list.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\ajax_list.aspx.cs:line 82
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

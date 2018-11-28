@@ -1,0 +1,23 @@
+Page :    http://localhost:7665/OMS/Management/Activities/StockinReturnNormal.aspx?key=101&Permission=2&type=SRN
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at DevExpress.Web.Internal.JsonReader.get_CharAtPos()
+   at DevExpress.Web.Internal.JsonReader.ReadString(Boolean isRegex)
+   at DevExpress.Web.Internal.JsonReader.ReadCore()
+   at DevExpress.Web.Internal.JsonReader.ReadObject()
+   at DevExpress.Web.Internal.JsonReader.ReadCore()
+   at DevExpress.Web.Internal.JsonReader.Read(String jsonString)
+   at DevExpress.Web.Internal.JsonReader.Read[T](String jsonString)
+   at DevExpress.Web.Internal.HtmlConvertor.FromJSON[T](String jsonString)
+   at DevExpress.Web.ASPxWebControl.LoadClientObjectState(String postValue)
+   at DevExpress.Web.ASPxWebControl.LoadClientObjectState(NameValueCollection postCollection, String name)
+   at DevExpress.Web.ASPxWebControl.LoadClientObjectState(NameValueCollection postCollection)
+   at DevExpress.Web.ASPxWebControl.get_ClientObjectState()
+   at DevExpress.Web.ASPxWebControl.GetClientObjectStateValueString(String key)
+   at DevExpress.Web.ASPxGridBase.GetCallbackStateValue()
+   at DevExpress.Web.ASPxGridBase.LoadPostData(NameValueCollection postCollection)
+   at DevExpress.Web.ASPxWebControl.LoadPostDataInternal(NameValueCollection postCollection, Boolean raisePostDataEvent)
+   at DevExpress.Web.ASPxWebControl.System.Web.UI.IPostBackDataHandler.LoadPostData(String postDataKey, NameValueCollection postCollection)
+   at System.Web.UI.Page.ProcessPostData(NameValueCollection postData, Boolean fBeforeLoad)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

@@ -1,0 +1,12 @@
+Page :    http://localhost:7665/OMS/Management/Activities/PurchaseChallan.aspx?key=153
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.FormatException: String was not recognized as a valid DateTime.
+   at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.Convert.ToDateTime(String value)
+   at BusinessLogicLayer.PurchaseChallanBL.GetPO(String vendorid, String OrderDate, String Status) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\BusinessLogicLayer\PurchaseChallanBL.cs:line 123
+   at ERP.OMS.Management.Activities.PurchaseChallan.FillGrid() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\PurchaseChallan.aspx.cs:line 391
+   at ERP.OMS.Management.Activities.PurchaseChallan.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\PurchaseChallan.aspx.cs:line 221
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

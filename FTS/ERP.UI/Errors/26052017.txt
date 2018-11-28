@@ -1,0 +1,12 @@
+Page :    http://localhost:7665/OMS/management/Activities/PurchaseReturnIssue.aspx?key=ADD
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near ')'.
+   at DataAccessLayer.ProcedureExecute.GetDataSet() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\DataAccessLayer\ProcedureExecute.cs:line 141
+   at BusinessLogicLayer.PurchaseReturnBL.GetAllDropDownDetailForSalesInvoice(String userbranch, String CompanyID, String BranchID, String Year) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\BusinessLogicLayer\PurchaseReturnBL.cs:line 108
+   at ERP.OMS.Management.Activities.PurchaseReturnIssue.GetAllDropDownDetailForSalesQuotation(String userbranch) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\PurchaseReturnIssue.aspx.cs:line 6463
+   at ERP.OMS.Management.Activities.PurchaseReturnIssue.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\PurchaseReturnIssue.aspx.cs:line 161
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+ClientConnectionId:e7796bcf-7931-4699-b1db-41a605e705ef

@@ -1,0 +1,11 @@
+Page :    http://localhost:7665/OMS/Management/Activities/SalesOrderAdd.aspx?key=ADD
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at DataAccessLayer.ProcedureExecute.GetTable() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\DataAccessLayer\ProcedureExecute.cs:line 75
+   at ERP.OMS.Management.Activities.SalesOrderAdd.GetTaxData() in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx.cs:line 1920
+   at ERP.OMS.Management.Activities.SalesOrderAdd.Page_Load(Object sender, EventArgs e) in e:\Kausik_Working_Project\VSSProject\LatestErp\ERP\ERP.UI\OMS\Management\Activities\SalesOrderAdd.aspx.cs:line 189
+   at System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+ClientConnectionId:71111312-6760-4d56-b8c5-64d9891a757b

@@ -1,0 +1,293 @@
+﻿@model Models.AttendanceModelInput
+@{
+    ViewBag.Title = "Attendance List";
+}
+
+<h2>Attendance List</h2>
+
+<script src="~/Scripts/chosen/chosen.jquery.min.js"></script>
+
+
+<link href="~/Scripts/chosen/chosen.min.css" rel="stylesheet" />
+
+<script>
+    $(function () {
+
+
+        $("#drpuser").chosen({
+            width: "100%"
+        });
+
+
+        if ('@Model.selectedusrid' != '') {
+
+            $("#drpuser").val('@Model.selectedusrid');
+            if ($("#drpuser").val() != '') {
+                var surl = '@Url.Action("GetAttendanceList", "Attendance")';
+                var usr = $("#drpuser").val();
+                $.ajax({
+                    url: surl,
+                    async: false,
+                    data: {
+                        selectedusrid: usr,
+                        Fromdate: $('#txtfromDate').val(),
+                        Todate: $('#txttoDate').val()
+
+                    },
+                    type: 'POST',
+
+                    success: function (data) {
+
+                        $('#refreshgrid').html(data);
+                    },
+                    error: function () {
+                        // alert('error');
+                    },
+
+
+                });
+
+
+            }
+
+
+            else {
+
+                $('#refreshgrid').html('');
+                $.jAlert({
+                    'title': 'Alert!',
+                    'content': 'Select User to show',
+                    'theme': 'dark_blue'
+                });
+            }
+
+        }
+
+        $('#txtfromDate').daterangepicker({
+
+            singleDatePicker: true,
+            showDropdowns: true,
+
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+
+
+
+        });
+
+        $('#txttoDate').daterangepicker({
+
+            singleDatePicker: true,
+            showDropdowns: true,
+            mask: true,
+            locale: {
+                format: 'DD-MM-YYYY'
+
+
+            }
+
+        });
+
+
+
+
+
+        $('body').on('click', '#btnshow', function () {
+
+            if ($("#drpuser").val() != '') {
+                var surl = '@Url.Action("GetAttendanceList", "Attendance")';
+                var usr = $("#drpuser").val();
+                $.ajax({
+                    url: surl,
+                    async: false,
+                    data: {
+                        selectedusrid: usr,
+                        Fromdate: $('#txtfromDate').val(),
+                        Todate: $('#txttoDate').val()
+
+                    },
+                    type: 'POST',
+
+                    success: function (data) {
+
+                        $('#refreshgrid').html(data);
+                    },
+                    error: function () {
+                        // alert('error');
+                    },
+
+
+                });
+
+
+            }
+
+
+            else {
+
+                $('#refreshgrid').html('');
+                $.jAlert({
+                    'title': 'Alert!',
+                    'content': 'Select User to show',
+                    'theme': 'dark_blue'
+                });
+            }
+        });
+
+
+
+        $('#ddlAppIds').on('change', function () {
+            if ($("#ddlAppIds option:selected").index() > 0) {
+                var selectedValue = $(this).val();
+                $('#ddlAppIds').prop("selectedIndex", 0);
+                ///   $('#reportLink').prop('href', '/Attendance/ExportDesignation?type=' + selectedValue);
+                //window.location.href = "/JobDetailsSetup/ExportDesignation?type=" + selectedValue;
+                var url = '@Url.Action("ExportAttendance", "Attendance", new {type = "_type_" })'
+                window.location.href = url.replace("_type_", selectedValue);
+
+                ///  $('#type').val(selectedValue);
+                ///  $('#frmExportGrid').submit();
+
+                if ($("#drpuser").val() != '') {
+                    var surl = '@Url.Action("GetAttendanceList", "Attendance")';
+                    var usr = $("#drpuser").val();
+                    $.ajax({
+                        url: surl,
+                        async: false,
+                        data: {
+                            selectedusrid: usr,
+                            Fromdate: $('#txtfromDate').val(),
+                            Todate: $('#txttoDate').val()
+
+                        },
+                        type: 'POST',
+
+                        success: function (data) {
+
+                            $('#refreshgrid').html(data);
+                        },
+                        error: function () {
+                            // alert('error');
+                        },
+
+
+                    });
+
+
+                }
+            }
+        });
+
+
+
+    });
+
+
+
+</script>
+<style>
+    .padTabl > tbody > tr > td {
+        padding: 3px 10px;
+    }
+
+    table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+        opacity: 0.8 !important;
+        color: #fff !important;
+    }
+
+
+    #tblshoplist > thead > tr > th {
+        background: #5F65AD !important;
+        border-top: 1px solid #0f87cc;
+        color: #fff;
+    }
+
+    #tblshoplist tbody > tr > th, #tblshoplist tfoot > tr > th, #tblshoplist thead > tr > td, #tblshoplist tbody > tr > td, #tblshoplist tfoot > tr > td {
+        padding: 1px 5px !important;
+    }
+
+
+
+
+    .scrooler {
+        width: 100%;
+        overflow-x: scroll;
+    }
+    .labelTbl > tbody > tr > td {
+        padding-right: 20px;
+    }
+    .w200 {
+        width:200px
+    }
+</style>
+
+<div class="form_main">
+
+
+
+
+
+    @using (Html.BeginForm("GetAttendanceList", "Attendance", FormMethod.Post, new { @id = "fromsalesman" }))
+{
+    <table class="pull-left labelTbl">
+
+        <tr>
+            <td >User List: </td>
+
+            <td style="width:200px;">
+                @*@Html.DropDownListFor(m => m.selectedusrid, new SelectList(Model.userlsit, "UserID", "username", Model.selectedusrid), "-Select-", new { @id = "drpuser", @class = "whclass", @tabindex = 1 })*@
+
+                <select id="drpuser" name="ddRoles" data-placeholder="Click or Type Here..." class="whclass">
+                    @foreach (var item in Model.userlsit)
+                    {
+                        if (Model.selectedusrid == item.UserID)
+                        {
+                            <option value="@item.UserID" selected="selected">@item.username</option>
+                        }
+                        else
+                        {
+                            <option value="@item.UserID">@item.username</option>
+                        }
+                    }
+                </select>
+
+            </td>
+
+            <td >From Date : </td>
+
+            <td>
+                @Html.TextBoxFor(m => m.Fromdate, new { @class = "form-control", @id = "txtfromDate", @tabindex = 2 })
+            </td>
+
+            <td >To Date : </td>
+
+            <td>
+                @Html.TextBoxFor(m => m.Todate, new { @class = "form-control", @id = "txttoDate", @radonly = true, @tabindex = 3 })
+            </td>
+            <td class="w200">
+                <button type="button" id="btnshow" class="btn btn-success btnwidth" tabindex=4>Show</button>
+                <select name="ddlAppIds" class="btn btn-sm btn-primary" id="ddlAppIds">
+                    <option value="0">Export to</option>
+
+                    <option value="2">XLSX</option>
+
+                </select>
+            </td>
+
+        </tr>
+
+      
+    </table>
+
+}
+
+    <br />
+
+
+    <div id="refreshgrid">
+
+    </div>
+
+
+</div>
