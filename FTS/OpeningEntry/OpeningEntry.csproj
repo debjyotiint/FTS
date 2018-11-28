@@ -19,10 +19,14 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -725,10 +729,6 @@
       <Name>BusinessLogicLayer</Name>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
-      <Project>{e0403ce7-71f7-4d02-85d1-1ee7125c1e75}</Project>
-      <Name>DataAccessLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj">
       <Project>{d31c544e-8eb6-4a69-b0f2-9c46ff7fc533}</Project>
       <Name>EntityLayer</Name>
@@ -736,10 +736,6 @@
     <ProjectReference Include="..\OpeningBusinessLogic\OpeningBusinessLogic.csproj">
       <Project>{70eb1679-a728-4f6c-b740-4d4c36000b4d}</Project>
       <Name>OpeningBusinessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UtilityLayer\UtilityLayer.csproj">
-      <Project>{9f45f4c2-a1b9-4aea-9f77-72b9f864b593}</Project>
-      <Name>UtilityLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
